@@ -22,7 +22,7 @@ import {
   RND_RETENTION_DELTA,
   SHIFT_META,
   simTotal,
-  TALENT_POOL_SIZE,
+  WORKFORCE_SIZE,
   WEEK_ATTENDANCE,
   WEEK_BASE_MINUTES,
   WEEKLY_CAP_HOURS,
@@ -99,8 +99,9 @@ export function DashboardHub({
           좋은 아침이에요, {currentUser.name} 님
         </h1>
         <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-ink-400">
-          교대 근무 현황부터 피어 피드백, 결재 대기 큐까지 — 넥스칩 세미콘
-          3,000명의 오늘을 한 화면에서 시작하세요.
+          출퇴근 타이머와 잔여 근로시간, 승인 대기 결재 문서까지 — 넥스칩 그룹{" "}
+          {WORKFORCE_SIZE.toLocaleString("ko-KR")}명의 오늘을 한 화면에서
+          시작하세요.
         </p>
       </header>
 
@@ -302,8 +303,8 @@ export function DashboardHub({
 
         <div className="mt-8 flex flex-wrap items-center gap-3 border-t border-hairline-soft pt-6">
           <p className="mr-auto text-sm text-ink-400">
-            핵심 인재풀 {TALENT_POOL_SIZE}명 환산 모델 · 보정 등급과 인상률이
-            모든 지표에 실시간 반영됩니다
+            전사 {WORKFORCE_SIZE.toLocaleString("ko-KR")}명 전수 시뮬레이션 ·
+            보정 등급과 인상률이 모든 지표에 실시간 반영됩니다
           </p>
           <Button
             variant="secondary"

@@ -9,11 +9,13 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { useMemo } from "react";
 import {
   fmtEok,
   fmtKorean,
   fmtWon,
   GRADE_META,
+  ORG_UNITS,
   type Employee,
   type PerformanceGrade,
 } from "../data/mockData";
@@ -57,14 +59,26 @@ export function RewardsView({
     { name: "복리후생 포인트", value: employee.welfare },
   ];
 
-  const barData = employees.map((e) => {
-    const simSalary = e.salary * (1 + raisePct[e.grade] / 100);
-    return {
-      id: e.id,
-      name: e.name,
-      total: Math.round(simSalary + e.bonus + e.welfare),
-    };
-  });
+  /* 같은 팀 동료만 셀렉트에 노출 — 3,000명 전체 나열 방지 */
+  const deptMembers = useMemo(
+    () => employees.filter((e) => e.dept === employee.dept),
+    [employees, employee.dept]
+  );
+
+  /* 시뮬레이션 총보상 상위 15명 비교 차트 */
+  const barData = useMemo(() => {
+    return employees
+      .map((e) => {
+        const simSalary = e.salary * (1 + raisePct[e.grade] / 100);
+        return {
+          id: e.id,
+          name: e.name,
+          total: Math.round(simSalary + e.bonus + e.welfare),
+        };
+      })
+      .sort((a, b) => b.total - a.total)
+      .slice(0, 15);
+  }, [employees, raisePct]);
 
   return (
     <div>
@@ -73,16 +87,31 @@ export function RewardsView({
         title="토탈 리워드 포탈"
         subtitle="기본 연봉 · 성과급 · 복리후생 · RSU를 개인별 총보상 관점으로 — 보정 등급과 메리트 인상률이 차트에 실시간 반영됩니다."
         actions={
-          <Select
-            options={employees.map((e) => ({
-              value: e.id,
-              label: `${e.name} · ${e.dept}`,
-            }))}
-            value={employee.id}
-            onChange={onSelect}
-            ariaLabel="임직원 선택"
-            className="w-60"
-          />
+          <>
+            <Select
+              options={ORG_UNITS.map((unit) => ({
+                value: unit.dept,
+                label: unit.dept,
+              }))}
+              value={employee.dept}
+              onChange={(dept) => {
+                const first = employees.find((e) => e.dept === dept);
+                if (first) onSelect(first.id);
+              }}
+              ariaLabel="팀 선택"
+              className="w-48"
+            />
+            <Select
+              options={deptMembers.map((e) => ({
+                value: e.id,
+                label: `${e.name} · ${e.position}`,
+              }))}
+              value={employee.id}
+              onChange={onSelect}
+              ariaLabel="임직원 선택"
+              className="w-52"
+            />
+          </>
         }
       />
 
@@ -204,7 +233,7 @@ export function RewardsView({
       </div>
 
       <Card
-        title="핵심 인재풀 총보상 비교"
+        title="전사 총보상 상위 15명"
         subtitle="메리트 인상률 시뮬레이션 반영 연간 총보상 — 막대를 클릭하면 해당 임직원으로 전환됩니다"
         className="mt-6"
       >
