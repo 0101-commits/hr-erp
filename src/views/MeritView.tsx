@@ -1,4 +1,5 @@
 import { AlertTriangle, CheckCircle2, RotateCcw } from "lucide-react";
+import { useMemo } from "react";
 import {
   BUDGET_POOL,
   fmtCompa,
@@ -7,10 +8,10 @@ import {
   fmtWon,
   GRADE_META,
   GRADES,
+  gradeHeadcount,
   simTotal,
-  TALENT_POOL_SIZE,
-  TIER_HEADCOUNT,
   tierAvgSalary,
+  WORKFORCE_SIZE,
   type Employee,
   type PerformanceGrade,
 } from "../data/mockData";
@@ -47,12 +48,18 @@ export function MeritView({
   const over = remaining < 0;
   const usagePct = Math.round((total / BUDGET_POOL) * 100);
 
+  /* 개인별 미리보기 — 연봉 상위 20명 */
+  const previewRows = useMemo(
+    () => [...employees].sort((a, b) => b.salary - a.salary).slice(0, 20),
+    [employees]
+  );
+
   return (
     <div>
       <PageHeader
         breadcrumb={["허브", "메리트 매트릭스 시뮬레이터"]}
         title="메리트 매트릭스 시뮬레이터"
-        subtitle={`핵심 인재풀 ${TALENT_POOL_SIZE}명 환산 · 총 예산 ${fmtEok(BUDGET_POOL)} 원 — 등급별 평균 연봉은 보정 결과와 실시간 연동됩니다.`}
+        subtitle={`전사 ${WORKFORCE_SIZE.toLocaleString("ko-KR")}명 전수 시뮬레이션 · 총 예산 ${fmtEok(BUDGET_POOL)} 원 — 등급별 인원과 평균 연봉은 보정 결과와 실시간 연동됩니다.`}
         actions={
           <Button variant="secondary" icon={<RotateCcw size={15} />} onClick={onReset}>
             기본값으로 되돌리기
@@ -87,7 +94,7 @@ export function MeritView({
         <StatCard
           label="총 예산 풀"
           value={`${fmtEok(BUDGET_POOL)} 원`}
-          detail="2026 메리트 사이클 · 3,000명 규모 기준"
+          detail={`2026 메리트 사이클 · ${WORKFORCE_SIZE.toLocaleString("ko-KR")}명 규모 기준`}
         />
         <StatCard
           label="인상 소요 합계"
@@ -110,7 +117,7 @@ export function MeritView({
         >
           <div className="flex flex-col">
             {GRADES.map((grade) => {
-              const headcount = TIER_HEADCOUNT[grade];
+              const headcount = gradeHeadcount(employees, grade);
               const avg = tierAvgSalary(employees, grade);
               const cost = headcount * avg * (raisePct[grade] / 100);
               return (
@@ -123,7 +130,7 @@ export function MeritView({
                       {grade} · {GRADE_META[grade].desc}
                     </Badge>
                     <span className="text-[13px] text-ink-400">
-                      {headcount}명 · 평균 연봉 {fmtKorean(avg)}
+                      {headcount.toLocaleString("ko-KR")}명 · 평균 연봉 {fmtKorean(avg)}
                     </span>
                     <span className="ml-auto text-xl font-semibold tabular-nums">
                       {raisePct[grade].toFixed(1)}%
@@ -159,7 +166,7 @@ export function MeritView({
 
         <Card
           title="개인별 인상 미리보기"
-          subtitle="표시된 15명 기준 · 보정 등급과 인상률 실시간 반영"
+          subtitle="연봉 상위 20명 표시 · 보정 등급과 인상률 실시간 반영"
           padding="flush"
         >
           <div className="nx-scroll overflow-x-auto px-4 pb-4">
@@ -174,7 +181,7 @@ export function MeritView({
                 </tr>
               </thead>
               <tbody>
-                {employees.map((employee) => {
+                {previewRows.map((employee) => {
                   const raise = employee.salary * (raisePct[employee.grade] / 100);
                   const newCompa =
                     employee.compaRatio * (1 + raisePct[employee.grade] / 100);

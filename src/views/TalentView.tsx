@@ -100,11 +100,11 @@ export function TalentView({ employees, onOpenProfile }: TalentViewProps) {
                             {CELL_NAMES[rowIndex][potential - 1]}
                           </span>
                           <span className="text-xs tabular-nums text-ink-400">
-                            {cellEmployees.length}명
+                            {cellEmployees.length.toLocaleString("ko-KR")}명
                           </span>
                         </div>
                         <div className="flex flex-wrap content-start gap-1.5">
-                          {cellEmployees.map((e) => (
+                          {cellEmployees.slice(0, 12).map((e) => (
                             <button
                               key={e.id}
                               type="button"
@@ -119,6 +119,11 @@ export function TalentView({ employees, onOpenProfile }: TalentViewProps) {
                               {e.name}
                             </button>
                           ))}
+                          {cellEmployees.length > 12 && (
+                            <span className="inline-flex items-center whitespace-nowrap rounded-full bg-hairline-soft px-3 py-1 text-[13px] font-medium text-ink-400">
+                              +{(cellEmployees.length - 12).toLocaleString("ko-KR")}명
+                            </span>
+                          )}
                         </div>
                       </div>
                     );
