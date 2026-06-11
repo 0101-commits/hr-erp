@@ -53,12 +53,12 @@ interface PanelState {
   employeeId: string;
 }
 
-/* AI 옴니바 자연어 → 라우트 매핑 사전 */
+/* AI 통합 검색 자연어 → 라우트 매핑 사전 */
 const ROUTE_KEYWORDS: { route: RouteId; words: string[] }[] = [
   { route: "org-chart", words: ["조직도", "org chart"] },
   { route: "appointment", words: ["발령"] },
-  { route: "lifecycle", words: ["온보딩", "오프보딩"] },
-  { route: "profiles", words: ["프로필 마스터", "사원 검색", "인사기록"] },
+  { route: "lifecycle", words: ["온보딩", "오프보딩", "입사 절차", "퇴사 절차"] },
+  { route: "profiles", words: ["프로필 마스터", "사원 프로필", "사원 검색", "인사기록"] },
   { route: "scheduling", words: ["스케줄", "근무제", "교대"] },
   { route: "work-risk", words: ["52시간", "근로 리스크"] },
   { route: "leave-verify", words: ["휴가 검증", "육아기", "모성보호"] },
@@ -68,15 +68,15 @@ const ROUTE_KEYWORDS: { route: RouteId; words: string[] }[] = [
   { route: "merit", words: ["메리트", "시뮬레이터", "인상", "merit"] },
   { route: "calibration", words: ["보정", "평가 매트릭스", "등급", "calibration"] },
   { route: "rewards", words: ["리워드", "보상", "rsu", "reward"] },
-  { route: "talent", words: ["탤런트", "9box", "9-box", "나인박스", "talent"] },
+  { route: "talent", words: ["탤런트", "인재 맵", "9box", "9-box", "나인박스", "talent"] },
   { route: "okr", words: ["okr", "목표"] },
   { route: "kpi", words: ["kpi", "지표"] },
   { route: "feedback", words: ["피드백", "감사 메시지"] },
   { route: "welfare-points", words: ["복지", "포인트"] },
   { route: "receipt", words: ["영수증", "ocr", "경비"] },
-  { route: "timeline", words: ["알림", "타임라인", "공지"] },
-  { route: "assistant", words: ["어시스턴트", "assistant"] },
-  { route: "hub", words: ["허브", "대시보드", "홈", "스냅샷", "dashboard"] },
+  { route: "timeline", words: ["알림", "타임라인", "소식", "공지"] },
+  { route: "assistant", words: ["어시스턴트", "비서", "assistant"] },
+  { route: "hub", words: ["허브", "대시보드", "홈", "오늘의 업무", "dashboard"] },
 ];
 
 /* 하이브리드 융합형 IA — 대메뉴 6 · 중메뉴 · 소메뉴 */
@@ -84,19 +84,19 @@ const NAV_SECTIONS: SideNavSection[] = [
   {
     key: "home",
     no: "01",
-    label: "홈 & 워크스페이스",
+    label: "홈 & 업무 공간",
     icon: <LayoutDashboard size={17} strokeWidth={1.75} />,
     subs: [
       {
-        label: "개인화 포털",
+        label: "개인 맞춤 화면",
         items: [
-          { id: "hub", label: "오늘의 업무 스냅샷" },
-          { id: "timeline", label: "알림 및 타임라인" },
+          { id: "hub", label: "오늘의 업무 현황" },
+          { id: "timeline", label: "알림 및 소식" },
         ],
       },
       {
-        label: "지능형 통합 바",
-        items: [{ id: "assistant", label: "AI 옴니 어시스턴트" }],
+        label: "지능형 통합 검색",
+        items: [{ id: "assistant", label: "AI 통합 비서" }],
       },
     ],
   },
@@ -107,7 +107,7 @@ const NAV_SECTIONS: SideNavSection[] = [
     icon: <Network size={17} strokeWidth={1.75} />,
     subs: [
       {
-        label: "마스터 인사 데이터",
+        label: "인사 기준 정보",
         items: [
           { id: "org-chart", label: "전사 조직도 관리" },
           { id: "appointment", label: "인사 발령 시뮬레이터" },
@@ -116,8 +116,8 @@ const NAV_SECTIONS: SideNavSection[] = [
       {
         label: "임직원 생애주기",
         items: [
-          { id: "lifecycle", label: "온보딩/오프보딩 가이드" },
-          { id: "profiles", label: "사원 프로필 마스터" },
+          { id: "lifecycle", label: "입사·퇴사 절차 안내" },
+          { id: "profiles", label: "사원 종합 프로필" },
         ],
       },
     ],
@@ -131,15 +131,15 @@ const NAV_SECTIONS: SideNavSection[] = [
       {
         label: "근로 시간 제어",
         items: [
-          { id: "scheduling", label: "근무 스케줄링 엔진" },
-          { id: "work-risk", label: "근로 제한 리스크 알림" },
+          { id: "scheduling", label: "근무 스케줄 편성" },
+          { id: "work-risk", label: "근로 제한 위험 알림" },
         ],
       },
       {
         label: "휴가 & 휴직 관리",
         items: [
-          { id: "leave-verify", label: "법정 휴가 자동 검증 시스템" },
-          { id: "leave-apply", label: "상시 휴가 신청 프로세스" },
+          { id: "leave-verify", label: "법정 휴가 자동 검증" },
+          { id: "leave-apply", label: "상시 휴가 신청" },
         ],
       },
     ],
@@ -151,22 +151,22 @@ const NAV_SECTIONS: SideNavSection[] = [
     icon: <Wallet size={17} strokeWidth={1.75} />,
     subs: [
       {
-        label: "급여 운영 엔진",
+        label: "급여 운영",
         items: [
-          { id: "payroll", label: "월간 급여 정산 프로세스" },
+          { id: "payroll", label: "월간 급여 정산" },
           { id: "year-end", label: "연말정산 시뮬레이터" },
         ],
       },
       {
         label: "경영 비용 분석",
         items: [
-          { id: "labor-cost", label: "인력 운영비 다각도 리포트" },
+          { id: "labor-cost", label: "인력 운영비 종합 보고" },
           { id: "merit", label: "메리트 매트릭스 시뮬레이터" },
         ],
       },
       {
-        label: "보상 포트폴리오",
-        items: [{ id: "rewards", label: "토탈 리워드 포탈" }],
+        label: "보상 구성",
+        items: [{ id: "rewards", label: "통합 보상 포털" }],
       },
     ],
   },
@@ -177,10 +177,10 @@ const NAV_SECTIONS: SideNavSection[] = [
     icon: <Target size={17} strokeWidth={1.75} />,
     subs: [
       {
-        label: "목표 정렬 프로세스",
+        label: "목표 정렬",
         items: [
           { id: "okr", label: "전사/조직/개인 OKR" },
-          { id: "kpi", label: "KPI 실적 트래킹" },
+          { id: "kpi", label: "KPI 실적 추적" },
         ],
       },
       {
@@ -188,7 +188,7 @@ const NAV_SECTIONS: SideNavSection[] = [
         items: [
           { id: "feedback", label: "지속적 360도 피드백" },
           { id: "calibration", label: "종합 인사 평가 매트릭스" },
-          { id: "talent", label: "9-Box 탤런트 맵" },
+          { id: "talent", label: "9-Box 인재 맵" },
         ],
       },
     ],
@@ -213,6 +213,16 @@ const NAV_SECTIONS: SideNavSection[] = [
 
 const AUTH_STORAGE_KEY = "nx-hr-authed";
 
+/* 라우트가 속한 대메뉴 키 — 접힌 레일의 활성 아이콘 표시용 */
+function sectionKeyOf(route: RouteId): string | null {
+  for (const section of NAV_SECTIONS) {
+    for (const sub of section.subs) {
+      if (sub.items.some((item) => item.id === route)) return section.key;
+    }
+  }
+  return null;
+}
+
 export default function App() {
   const [authed, setAuthed] = useState(
     () =>
@@ -220,6 +230,7 @@ export default function App() {
       sessionStorage.getItem(AUTH_STORAGE_KEY) === "1"
   );
   const [route, setRoute] = useState<RouteId>("hub");
+  const [navOpen, setNavOpen] = useState(false);
   const [employees, setEmployees] = useState<Employee[]>(INITIAL_EMPLOYEES);
   const [raisePct, setRaisePct] =
     useState<Record<PerformanceGrade, number>>(DEFAULT_RAISE);
@@ -271,7 +282,7 @@ export default function App() {
     setPanel(null);
   }, []);
 
-  /* 등급 변경 → 성과급 재산정 → 시뮬레이터·리워드·탤런트에 즉시 전파 */
+  /* 등급 변경 → 성과급 재산정 → 시뮬레이터·보상·인재 맵에 즉시 전파 */
   const changeGrade = useCallback(
     (employeeId: string, grade: PerformanceGrade) => {
       setEmployees((prev) =>
@@ -326,7 +337,7 @@ export default function App() {
       ]);
       setPanel(null);
       showToast(
-        `${target.name}님의 ${dateLabel} 연차가 상신됐어요 — 결재 대기 큐에 등록`
+        `${target.name}님의 ${dateLabel} 연차가 상신됐어요 — 결재 대기함에 등록`
       );
     },
     [employees, showToast]
@@ -353,16 +364,16 @@ export default function App() {
   const punch = useCallback(() => {
     if (punchedInAt === null) {
       setPunchedInAt(Date.now());
-      showToast("출근 펀치 완료 — 좋은 하루 되세요!");
+      showToast("출근 처리 완료 — 좋은 하루 되세요!");
     } else {
       const minutes = Math.max(0, (Date.now() - punchedInAt) / 60000);
       setTodayBaseMinutes((prev) => prev + minutes);
       setPunchedInAt(null);
-      showToast("퇴근 펀치 완료 — 오늘 근무가 기록됐어요");
+      showToast("퇴근 처리 완료 — 오늘 근무가 기록됐어요");
     }
   }, [punchedInAt, showToast]);
 
-  /* AI 옴니바 자연어 명령 라우터 */
+  /* AI 통합 검색 자연어 명령 라우터 */
   const handleCommand = useCallback(
     (query: string) => {
       const q = query.toLowerCase();
@@ -510,7 +521,7 @@ export default function App() {
             onChangeGrade={changeGrade}
             onFinalize={() =>
               showToast(
-                "보정 결과가 확정됐어요 — 시뮬레이터와 탤런트 보드에 반영됩니다"
+                "보정 결과가 확정됐어요 — 시뮬레이터와 인재 맵에 반영됩니다"
               )
             }
             onOpenProfile={openProfile}
@@ -543,25 +554,76 @@ export default function App() {
       />
 
       <div className="flex flex-1">
-        <aside className="sticky top-16 hidden h-[calc(100vh-64px)] w-72 flex-none flex-col border-r border-hairline-soft px-4 py-6 lg:flex">
-          <div className="nx-scroll min-h-0 flex-1 overflow-y-auto pr-1">
-            <SideNav sections={NAV_SECTIONS} active={route} onChange={setRoute} />
+        {/* 평상시 접힌 아이콘 레일 — 마우스를 올리면 전체 메뉴가 좌측에서 슬라이드 */}
+        <aside
+          className="sticky top-16 z-30 hidden h-[calc(100vh-64px)] w-[68px] flex-none border-r border-hairline-soft lg:block"
+          aria-label="주요 메뉴 영역"
+          onMouseEnter={() => setNavOpen(true)}
+          onMouseLeave={() => setNavOpen(false)}
+          onFocus={() => setNavOpen(true)}
+          onBlur={(event) => {
+            if (!event.currentTarget.contains(event.relatedTarget as Node)) {
+              setNavOpen(false);
+            }
+          }}
+        >
+          <div className="flex h-full flex-col items-center gap-1.5 px-3 py-6">
+            {NAV_SECTIONS.map((section) => {
+              const isActive = sectionKeyOf(route) === section.key;
+              return (
+                <button
+                  key={section.key}
+                  type="button"
+                  onClick={() => setRoute(section.subs[0].items[0].id)}
+                  aria-label={section.label}
+                  title={section.label}
+                  className={`flex h-11 w-11 flex-none items-center justify-center rounded-field transition-colors duration-150 ${
+                    isActive
+                      ? "bg-ink text-mint"
+                      : "text-ink-400 hover:bg-ink/5 hover:text-ink"
+                  }`}
+                >
+                  {section.icon}
+                </button>
+              );
+            })}
+            <button
+              type="button"
+              onClick={() => openProfile(currentUser.id)}
+              aria-label={`${currentUser.name} 프로필 열기`}
+              title={`${currentUser.name} · ${currentUser.dept}`}
+              className="mt-auto flex-none rounded-full transition-transform hover:scale-105"
+            >
+              <Avatar name={currentUser.name} size={36} />
+            </button>
           </div>
-          <button
-            type="button"
-            onClick={() => openProfile(currentUser.id)}
-            className="mt-4 flex flex-none items-center gap-3 rounded-field p-3 text-left transition-colors hover:bg-ink/5"
+
+          <div
+            className={`absolute left-0 top-0 flex h-full w-72 flex-col border-r border-hairline-soft bg-surface px-4 py-6 shadow-cube transition-all duration-300 ease-out ${
+              navOpen
+                ? "translate-x-0 opacity-100"
+                : "pointer-events-none -translate-x-6 opacity-0"
+            }`}
           >
-            <Avatar name={currentUser.name} size={36} />
-            <span className="min-w-0">
-              <span className="block truncate text-sm font-semibold">
-                {currentUser.name}
+            <div className="nx-scroll min-h-0 flex-1 overflow-y-auto pr-1">
+              <SideNav sections={NAV_SECTIONS} active={route} onChange={setRoute} />
+            </div>
+            <button
+              type="button"
+              onClick={() => openProfile(currentUser.id)}
+              className="mt-4 flex flex-none items-center gap-3 rounded-field p-3 text-left transition-colors hover:bg-ink/5"
+            >
+              <Avatar name={currentUser.name} size={36} />
+              <span className="min-w-0">
+                <span className="block truncate text-sm font-semibold">
+                  {currentUser.name}
+                </span>
+                <span className="block truncate text-xs text-ink-400">
+                  {currentUser.dept} · {currentUser.role}
+                </span>
               </span>
-              <span className="block truncate text-xs text-ink-400">
-                {currentUser.dept} · {currentUser.role}
-              </span>
-            </span>
-          </button>
+            </button>
+          </div>
         </aside>
 
         <main className="min-w-0 flex-1 px-8 py-9">

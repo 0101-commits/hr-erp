@@ -10,7 +10,7 @@ export type ShiftCode = "DAY" | "SWING" | "NIGHT" | "OFFICE";
 
 /* 하이브리드 융합형 IA — 대메뉴 6개 산하 소메뉴 라우트 */
 export type RouteId =
-  /* 01. 홈 & 워크스페이스 */
+  /* 01. 홈 & 업무 공간 */
   | "hub"
   | "timeline"
   | "assistant"
@@ -175,11 +175,11 @@ const EMPLOYEE_SEEDS: EmployeeSeed[] = [
   {
     id: "NC-1001", name: "김도현", position: "수석연구원", entity: HQ,
     division: "R&D부문", dept: "공정개발그룹",
-    role: "EUV 포토 공정 리드", salary: 168000000, compaRatio: 1.12, grade: "S",
+    role: "EUV 포토 공정 총괄", salary: 168000000, compaRatio: 1.12, grade: "S",
     okrRate: 108, potential: 3, leaveRemaining: 8, shift: "DAY",
     weekHours: 46.5, tenureYears: 11, childAge: 7, welfareUsed: 5200000,
     rsu: [
-      { date: "2024-03-02", units: 1200, value: 96000000, vested: true, note: "입사 리텐션 부여" },
+      { date: "2024-03-02", units: 1200, value: 96000000, vested: true, note: "입사 시 재직 유지 조건 부여" },
       { date: "2025-03-02", units: 600, value: 52000000, vested: true, note: "1차 귀속 (25%)" },
       { date: "2026-03-02", units: 600, value: 58000000, vested: true, note: "2차 귀속 (25%)" },
       { date: "2027-03-02", units: 1200, value: 0, vested: false, note: "잔여 귀속 (50%)" },
@@ -216,7 +216,7 @@ const EMPLOYEE_SEEDS: EmployeeSeed[] = [
     okrRate: 98, potential: 3, leaveRemaining: 9, shift: "OFFICE",
     weekHours: 45, tenureYears: 8, childAge: 4, welfareUsed: 4700000,
     rsu: [
-      { date: "2024-06-01", units: 800, value: 62000000, vested: true, note: "입사 리텐션 부여" },
+      { date: "2024-06-01", units: 800, value: 62000000, vested: true, note: "입사 시 재직 유지 조건 부여" },
       { date: "2026-06-01", units: 400, value: 0, vested: false, note: "1차 귀속 (25%)" },
       { date: "2028-06-01", units: 400, value: 0, vested: false, note: "2차 귀속 (25%)" },
     ],
@@ -261,7 +261,7 @@ const EMPLOYEE_SEEDS: EmployeeSeed[] = [
     okrRate: 88, potential: 3, leaveRemaining: 10, shift: "NIGHT",
     weekHours: 50.5, tenureYears: 4, childAge: null, welfareUsed: 1900000,
     rsu: [
-      { date: "2025-06-01", units: 250, value: 19000000, vested: true, note: "성장 트랙 부여" },
+      { date: "2025-06-01", units: 250, value: 19000000, vested: true, note: "성장 경로 부여" },
       { date: "2027-06-01", units: 250, value: 0, vested: false, note: "잔여 귀속 (50%)" },
     ],
   },
@@ -272,17 +272,17 @@ const EMPLOYEE_SEEDS: EmployeeSeed[] = [
     okrRate: 81, potential: 2, leaveRemaining: 4, shift: "OFFICE",
     weekHours: 42.5, tenureYears: 5, childAge: 1, welfareUsed: 3300000,
     rsu: [
-      { date: "2026-06-01", units: 150, value: 0, vested: false, note: "인센티브 연동 부여" },
+      { date: "2026-06-01", units: 150, value: 0, vested: false, note: "성과 연동 부여" },
     ],
   },
   {
     id: "NC-1010", name: "한지원", position: "책임매니저", entity: HQ,
     division: "경영지원부문", dept: "HRBP팀",
-    role: "R&D부문 HRBP 리드", salary: 98000000, compaRatio: 0.99, grade: "B",
+    role: "R&D부문 HRBP 총괄", salary: 98000000, compaRatio: 0.99, grade: "B",
     okrRate: 90, potential: 3, leaveRemaining: 8, shift: "OFFICE",
     weekHours: 43.5, tenureYears: 6, childAge: 3, welfareUsed: 2800000,
     rsu: [
-      { date: "2025-09-01", units: 180, value: 14000000, vested: true, note: "성장 트랙 부여" },
+      { date: "2025-09-01", units: 180, value: 14000000, vested: true, note: "성장 경로 부여" },
       { date: "2027-09-01", units: 180, value: 0, vested: false, note: "잔여 귀속 (50%)" },
     ],
   },
@@ -301,7 +301,7 @@ const EMPLOYEE_SEEDS: EmployeeSeed[] = [
     okrRate: 86, potential: 3, leaveRemaining: 13, shift: "OFFICE",
     weekHours: 40.5, tenureYears: 4, childAge: null, welfareUsed: 2100000,
     rsu: [
-      { date: "2026-03-02", units: 200, value: 0, vested: false, note: "성장 트랙 부여 예정" },
+      { date: "2026-03-02", units: 200, value: 0, vested: false, note: "성장 경로 부여 예정" },
     ],
   },
   {
@@ -315,7 +315,7 @@ const EMPLOYEE_SEEDS: EmployeeSeed[] = [
   {
     id: "NC-1014", name: "송다은", position: "스페셜리스트", entity: HQ,
     division: "영업마케팅부문", dept: "글로벌 마케팅팀",
-    role: "마켓 인텔리전스", salary: 72000000, compaRatio: 0.85, grade: "C",
+    role: "시장 정보 분석", salary: 72000000, compaRatio: 0.85, grade: "C",
     okrRate: 64, potential: 1, leaveRemaining: 9, shift: "OFFICE",
     weekHours: 39.5, tenureYears: 2, childAge: null, welfareUsed: 1500000,
     rsu: [],
@@ -323,7 +323,7 @@ const EMPLOYEE_SEEDS: EmployeeSeed[] = [
   {
     id: "NC-1015", name: "백승우", position: "매니저", entity: HQ,
     division: "경영지원부문", dept: "HRBP팀",
-    role: "피플 애널리틱스", salary: 75000000, compaRatio: 0.87, grade: "C",
+    role: "인사 데이터 분석", salary: 75000000, compaRatio: 0.87, grade: "C",
     okrRate: 71, potential: 1, leaveRemaining: 6, shift: "OFFICE",
     weekHours: 41.5, tenureYears: 3, childAge: 9, welfareUsed: 1800000,
     rsu: [],
@@ -369,8 +369,8 @@ const ORG_BLUEPRINT: EntityBlueprint[] = [
       {
         division: "제조부문",
         teams: [
-          { dept: "이천 P3 제조팀", count: 480, kind: "mfg", shifts: ["DAY", "SWING", "NIGHT"], roles: ["포토 공정 오퍼레이션", "식각 공정 오퍼레이션", "확산 공정 오퍼레이션", "박막 공정 운영", "인라인 계측 운영"] },
-          { dept: "평택 P4 제조팀", count: 430, kind: "mfg", shifts: ["DAY", "SWING", "NIGHT"], roles: ["포토 공정 오퍼레이션", "세정 공정 운영", "이온주입 공정 운영", "CMP 공정 운영", "웨이퍼 반송 운영"] },
+          { dept: "이천 P3 제조팀", count: 480, kind: "mfg", shifts: ["DAY", "SWING", "NIGHT"], roles: ["포토 공정 운영", "식각 공정 운영", "확산 공정 운영", "박막 공정 운영", "인라인 계측 운영"] },
+          { dept: "평택 P4 제조팀", count: 430, kind: "mfg", shifts: ["DAY", "SWING", "NIGHT"], roles: ["포토 공정 운영", "세정 공정 운영", "이온주입 공정 운영", "CMP 공정 운영", "웨이퍼 반송 운영"] },
           { dept: "설비기술팀", count: 230, kind: "mfg", shifts: ["DAY", "SWING"], roles: ["포토 설비 PM", "식각 설비 PM", "반송 자동화 엔지니어링", "유틸리티 인프라 운영"] },
           { dept: "품질보증팀", count: 130, kind: "office", shifts: ["DAY"], roles: ["인라인 QA", "고객 품질 대응", "신뢰성 평가", "품질 시스템 운영"] },
         ],
@@ -388,7 +388,7 @@ const ORG_BLUEPRINT: EntityBlueprint[] = [
       {
         division: "경영지원부문",
         teams: [
-          { dept: "HRBP팀", count: 45, kind: "office", shifts: ["OFFICE"], roles: ["제조부문 HRBP", "R&D부문 HRBP", "피플 애널리틱스", "조직문화 기획"] },
+          { dept: "HRBP팀", count: 45, kind: "office", shifts: ["OFFICE"], roles: ["제조부문 HRBP", "R&D부문 HRBP", "인사 데이터 분석", "조직문화 기획"] },
           { dept: "재무회계팀", count: 50, kind: "office", shifts: ["OFFICE"], roles: ["원가 회계", "자금 운용", "세무 기획", "연결 결산"] },
           { dept: "구매조달팀", count: 55, kind: "office", shifts: ["OFFICE"], roles: ["원자재 소싱", "설비 구매", "협력사 관리"] },
           { dept: "법무컴플라이언스팀", count: 25, kind: "office", shifts: ["OFFICE"], roles: ["계약 법무", "수출 통제 컴플라이언스", "특허 분쟁 대응"] },
@@ -398,7 +398,7 @@ const ORG_BLUEPRINT: EntityBlueprint[] = [
       {
         division: "영업마케팅부문",
         teams: [
-          { dept: "글로벌 마케팅팀", count: 60, kind: "office", shifts: ["OFFICE"], roles: ["북미 고객 마케팅", "유럽 채널 마케팅", "마켓 인텔리전스", "테크 마케팅"] },
+          { dept: "글로벌 마케팅팀", count: 60, kind: "office", shifts: ["OFFICE"], roles: ["북미 고객 마케팅", "유럽 채널 마케팅", "시장 정보 분석", "기술 마케팅"] },
           { dept: "국내영업팀", count: 50, kind: "office", shifts: ["OFFICE"], roles: ["대형 고객 영업", "유통 채널 영업", "영업 기획"] },
           { dept: "해외영업팀", count: 60, kind: "office", shifts: ["OFFICE"], roles: ["중화권 영업", "북미 영업", "일본 영업", "수주 관리"] },
         ],
@@ -582,7 +582,7 @@ function generateEmployees(): EmployeeSeed[] {
               ? (() => {
                   const units = 100 * randInt(1, 4);
                   return [
-                    { date: "2025-03-02", units, value: units * 85000, vested: true, note: "핵심인재 리텐션 부여" },
+                    { date: "2025-03-02", units, value: units * 85000, vested: true, note: "핵심인재 유지 목적 부여" },
                     { date: "2027-03-02", units, value: 0, vested: false, note: "잔여 귀속 (50%)" },
                   ];
                 })()
@@ -708,7 +708,7 @@ export function fmtHours(n: number): string {
 }
 
 /* ------------------------------------------------------------
-   타임 & 어텐던스 — 주 52시간 모델
+   근태 — 주 52시간 모델
    ------------------------------------------------------------ */
 
 export const WEEKLY_CAP_HOURS = 52;
@@ -731,45 +731,45 @@ export const WEEK_BASE_MINUTES = WEEK_ATTENDANCE.reduce(
 );
 
 /* ------------------------------------------------------------
-   애자일 OKR & 피어 피드백 스트림
+   OKR & 동료 피드백 모음
    ------------------------------------------------------------ */
 
 export const MY_KEY_RESULTS: OkrKeyResult[] = [
   { id: "kr-1", title: "2026 보상 사이클 적시 완결률 100%", progress: 78, owner: "한지원" },
   { id: "kr-2", title: "핵심 인재 유지율 97% 방어", progress: 92, owner: "한지원" },
-  { id: "kr-3", title: "피플 애널리틱스 대시보드 v2 론칭", progress: 64, owner: "한지원" },
+  { id: "kr-3", title: "인사 데이터 분석 대시보드 v2 구축", progress: 64, owner: "한지원" },
 ];
 
 export const PEER_FEEDBACK: PeerFeedbackItem[] = [
   {
     id: "pf-1", from: "박지훈", fromDept: "수율개선팀", to: "한지민",
-    message: "결함 맵 클러스터링 모델 덕분에 D2 라인 수율 이슈를 하루 만에 잡았습니다. 데이터 드리븐 협업의 정석!",
+    message: "결함 맵 군집 분석 모델 덕분에 D2 라인 수율 문제를 하루 만에 잡았습니다. 데이터 기반 협업의 정석!",
     tags: ["수율개선", "데이터협업"], time: "26분 전",
   },
   {
     id: "pf-2", from: "김도현", fromDept: "공정개발그룹", to: "강하은",
-    message: "EUV–식각 인터페이스 조건을 함께 튜닝해 준 덕분에 신규 레시피 검증이 2주 단축됐어요.",
-    tags: ["공정협업", "리드타임단축"], time: "1시간 전",
+    message: "EUV–식각 경계 조건을 함께 조율해 준 덕분에 신규 레시피 검증이 2주 단축됐어요.",
+    tags: ["공정협업", "기간단축"], time: "1시간 전",
   },
   {
     id: "pf-3", from: "이서연", fromDept: "메모리 소자설계팀", to: "노아라",
-    message: "DV 커버리지 리포트가 정말 깔끔했습니다. 설계 리뷰 속도가 확 올라갔어요.",
+    message: "설계 검증 결과 보고서가 정말 깔끔했습니다. 설계 검토 속도가 확 올라갔어요.",
     tags: ["설계검증", "품질"], time: "3시간 전",
   },
   {
     id: "pf-4", from: "최유진", fromDept: "글로벌 마케팅팀", to: "송다은",
-    message: "북미 고객사 인텔리전스 브리핑이 수주 미팅의 결정타였습니다. 감사합니다!",
-    tags: ["마켓인텔리전스", "수주기여"], time: "어제",
+    message: "북미 고객사 시장 동향 브리핑이 수주 회의의 결정타였습니다. 감사합니다!",
+    tags: ["시장정보분석", "수주기여"], time: "어제",
   },
 ];
 
 export const FEEDBACK_TAGS = [
-  "협업", "데이터드리븐", "문제해결", "리더십", "고객지향",
-  "수율개선", "공정협업", "품질", "스피드", "멘토링",
+  "협업", "데이터기반", "문제해결", "리더십", "고객지향",
+  "수율개선", "공정협업", "품질", "신속함", "멘토링",
 ];
 
 /* ------------------------------------------------------------
-   엔터프라이즈 결재 대기 큐
+   전사 결재 대기함
    ------------------------------------------------------------ */
 
 export const INITIAL_APPROVALS: ApprovalItem[] = [
@@ -786,7 +786,7 @@ export const INITIAL_APPROVALS: ApprovalItem[] = [
     requester: "박지훈", dept: "수율개선팀", due: "D-3", urgent: false,
   },
   {
-    id: "ap-4", kind: "해외 출장", title: "북미 고객사 QBR 출장 5일",
+    id: "ap-4", kind: "해외 출장", title: "북미 고객사 분기 사업 점검 출장 5일",
     requester: "최유진", dept: "글로벌 마케팅팀", due: "D-5", urgent: false,
   },
   {
@@ -796,14 +796,14 @@ export const INITIAL_APPROVALS: ApprovalItem[] = [
 ];
 
 /* ------------------------------------------------------------
-   전사 공지 & 조직 변동 스트림 (알림 및 타임라인)
+   전사 공지 & 조직 변동 소식 (알림 및 소식)
    ------------------------------------------------------------ */
 
 export const NOTICES: NoticeItem[] = [
   {
     id: "nt-1", tag: "전사 공지", pinned: true, date: "2026-06-10",
     title: "2026 상반기 성과 보정 세션 일정 안내",
-    body: "6월 셋째 주부터 부문별 캘리브레이션 세션이 진행됩니다. 조직장은 사전 등급 입력을 6/15(월)까지 완료해 주세요.",
+    body: "6월 셋째 주부터 부문별 평가 등급 보정(캘리브레이션) 세션이 진행됩니다. 조직장은 사전 등급 입력을 6/15(월)까지 완료해 주세요.",
   },
   {
     id: "nt-2", tag: "복리후생", pinned: true, date: "2026-06-08",
@@ -824,14 +824,14 @@ export const NOTICES: NoticeItem[] = [
 
 export const ORG_CHANGES: OrgChangeItem[] = [
   { id: "oc-1", kind: "발령", message: "박지훈 팀장 — 수율개선팀 → 평택 P4 수율TF 겸직 발령", time: "오늘 09:00" },
-  { id: "oc-2", kind: "입사", message: "신규 입사자 12명 — 6/8(월) 입사 온보딩 진행 중 (R&D 7 · 제조 5)", time: "어제" },
+  { id: "oc-2", kind: "입사", message: "신규 입사자 12명 — 6/8(월) 입사 절차 진행 중 (R&D 7 · 제조 5)", time: "어제" },
   { id: "oc-3", kind: "조직개편", message: "소프트웨어플랫폼팀 산하 ‘수율 ML 파트’ 신설", time: "2일 전" },
-  { id: "oc-4", kind: "퇴사", message: "6월 퇴사 예정자 4명 — 오프보딩 체크리스트 진행률 75%", time: "3일 전" },
+  { id: "oc-4", kind: "퇴사", message: "6월 퇴사 예정자 4명 — 퇴사 절차 체크리스트 진행률 75%", time: "3일 전" },
   { id: "oc-5", kind: "발령", message: "넥스칩 시스템 LSI SoC설계팀 — 책임연구원 2명 전입", time: "4일 전" },
 ];
 
 /* ------------------------------------------------------------
-   내러티브 HR 애널리틱스
+   서술형 인사 분석 지표
    ------------------------------------------------------------ */
 
 export const ORG_HEALTH_SCORE = 94;
@@ -840,7 +840,7 @@ export const ORG_RETENTION_RATE = 96.8;
 export const ENGAGEMENT_INDEX = 8.6;
 
 /* ------------------------------------------------------------
-   AI 옴니바 명령 사전
+   AI 통합 검색 명령 사전
    ------------------------------------------------------------ */
 
 export interface OmnibarSuggestion {
@@ -851,10 +851,10 @@ export interface OmnibarSuggestion {
 }
 
 export const OMNIBAR_SUGGESTIONS: OmnibarSuggestion[] = [
-  { id: "sg-1", label: "연차 신청 안내 받기", hint: "AI Leave Application", query: "연차 신청" },
-  { id: "sg-2", label: "전사 조직도 열기", hint: "Org Chart", query: "조직도" },
-  { id: "sg-3", label: "김도현 프로필 보기", hint: "Employee Profile", query: "김도현" },
-  { id: "sg-4", label: "연말정산 시뮬레이터", hint: "Year-End Tax", query: "연말정산" },
-  { id: "sg-5", label: "주 52시간 리스크 현황", hint: "Work-Hour Risk", query: "52시간" },
-  { id: "sg-6", label: "메리트 시뮬레이터 열기", hint: "Merit Matrix", query: "메리트 시뮬레이터" },
+  { id: "sg-1", label: "연차 신청 안내 받기", hint: "휴가 신청", query: "연차 신청" },
+  { id: "sg-2", label: "전사 조직도 열기", hint: "조직 관리", query: "조직도" },
+  { id: "sg-3", label: "김도현 프로필 보기", hint: "사원 프로필", query: "김도현" },
+  { id: "sg-4", label: "연말정산 시뮬레이터", hint: "급여·세무", query: "연말정산" },
+  { id: "sg-5", label: "주 52시간 위험 현황", hint: "근태 관리", query: "52시간" },
+  { id: "sg-6", label: "메리트 시뮬레이터 열기", hint: "보상 시뮬레이션", query: "메리트 시뮬레이터" },
 ];

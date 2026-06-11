@@ -20,6 +20,7 @@ import {
 import { Avatar } from "../ui/Avatar";
 import { Badge } from "../ui/Badge";
 import { Button } from "../ui/Button";
+import { HelpTip } from "../ui/HelpTip";
 import { ProgressBar } from "../ui/ProgressBar";
 
 export type PanelMode = "profile" | "leave";
@@ -84,9 +85,9 @@ export function DetailPanel({
               <>
                 <Sparkles size={18} className="text-cobalt" />
                 <h2 className="text-[17px] font-semibold tracking-snug">
-                  AI Leave Application
+                  AI 연차 신청
                 </h2>
-                <Badge tone="cobalt">대화형 어드바이저</Badge>
+                <Badge tone="cobalt">대화형 도우미</Badge>
               </>
             ) : (
               <>
@@ -184,7 +185,13 @@ function ProfileBody({
       <section className="grid grid-cols-2 gap-4">
         <div className="rounded-field border border-hairline-soft p-5">
           <div className="mb-3 flex items-baseline justify-between">
-            <span className="type-label">컴파라티오</span>
+            <span className="type-label flex items-center gap-1.5">
+              컴파라티오
+              <HelpTip
+                size={13}
+                text="컴파라티오(Compa-Ratio)는 시장 중위 연봉 대비 개인 연봉의 비율입니다. 1.00이면 시장 중간 수준, 1.00보다 크면 시장보다 높은 보상을 뜻합니다."
+              />
+            </span>
             <span className="text-lg font-semibold tabular-nums">
               {fmtCompa(employee.compaRatio)}
             </span>
@@ -196,7 +203,7 @@ function ProfileBody({
             height={6}
           />
           <p className="mt-2 text-xs text-ink-400">
-            시장 미드포인트 대비 {employee.compaRatio >= 1 ? "상회" : "하회"} ·
+            시장 중위값 대비 {employee.compaRatio >= 1 ? "상회" : "하회"} ·
             밴드 0.70 – 1.30
           </p>
         </div>
@@ -240,7 +247,13 @@ function ProfileBody({
       </section>
 
       <section>
-        <h3 className="type-label mb-3">RSU 부여 · 귀속 일정</h3>
+        <h3 className="type-label mb-3 flex items-center gap-1.5">
+          RSU 부여 · 귀속 일정
+          <HelpTip
+            size={13}
+            text="RSU(양도제한 조건부 주식)는 일정 기간 재직 등 조건을 충족하면 본인 소유로 확정(귀속)되어 주식으로 받는 보상입니다."
+          />
+        </h3>
         {employee.rsu.length === 0 ? (
           <div className="rounded-field border border-dashed border-hairline p-6 text-center text-sm text-ink-400">
             부여된 RSU가 없습니다. 차기 핵심인재 리뷰에서 부여 대상 여부를
@@ -285,10 +298,10 @@ function ProfileBody({
           icon={<Sparkles size={16} />}
           onClick={() => onStartLeave(employee.id)}
         >
-          AI 연차 신청 어드바이저 실행
+          AI 연차 신청 도우미 실행
         </Button>
         <p className="mt-2.5 text-center text-xs text-ink-400">
-          결재 라인과 라인 가동 현황을 AI가 자율 평가한 뒤 신청을 안내합니다
+          결재 라인과 라인 가동 현황을 AI가 자동 검토한 뒤 신청을 안내합니다
         </p>
       </footer>
     </div>
@@ -329,9 +342,9 @@ function LeaveBody({
             <Sparkles size={15} />
           </span>
           <div className="rounded-field rounded-tl-cell border border-hairline-soft bg-canvas px-5 py-4 text-sm leading-relaxed">
-            안녕하세요, <strong>{employee.name}</strong>님. AI 리브
-            어드바이저입니다. 결재 라인과 반도체 라인 가동 현황을 자율
-            평가했어요. 신청 전 아래 분석을 확인해 주세요.
+            안녕하세요, <strong>{employee.name}</strong>님. AI 연차 신청
+            도우미입니다. 결재 라인과 반도체 라인 가동 현황을 자동으로
+            검토했어요. 신청 전 아래 분석을 확인해 주세요.
           </div>
         </div>
       )}
@@ -352,13 +365,13 @@ function LeaveBody({
                   <strong className="text-alert-deep">
                     {selected.conflicts}명이 이미 휴가 예정
                   </strong>
-                  입니다. 라인 커버리지 검토를 권장합니다.
+                  입니다. 라인 인력 공백 검토를 권장합니다.
                 </>
               ) : (
                 <>
                   당일 동일 {employee.dept} 팀원의 휴가 일정이 없어{" "}
                   <strong className="text-mint-deep">
-                    커버리지가 안정적
+                    인력 공백 없이 안정적
                   </strong>
                   입니다.
                 </>
@@ -377,7 +390,7 @@ function LeaveBody({
                 ) : (
                   <CheckCircle2 size={13} />
                 )}
-                팀 커버리지 {hasConflict ? `주의 · 중복 ${selected.conflicts}명` : "안정"}
+                팀 인력 운영 {hasConflict ? `주의 · 중복 ${selected.conflicts}명` : "안정"}
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-mint px-3 py-1.5 text-xs font-semibold text-mint-deep">
                 <Factory size={13} />
@@ -400,7 +413,7 @@ function LeaveBody({
             </p>
             <ol className="mt-3 flex items-center gap-2 text-xs font-medium text-ink-500">
               <li className="rounded-full border border-hairline bg-surface px-3 py-1.5">
-                1 · {employee.dept} 리더
+                1 · {employee.dept} 팀장
               </li>
               <span className="text-ink-300">→</span>
               <li className="rounded-full border border-hairline bg-surface px-3 py-1.5">
@@ -471,7 +484,7 @@ function LeaveBody({
               {selected.label} 연차 신청 확정 및 결재 상신
             </Button>
             <p className="mt-2.5 text-center text-xs text-ink-400">
-              상신 즉시 결재 대기 큐에 등록되고 잔여 연차가 1일 차감됩니다
+              상신 즉시 결재 대기함에 등록되고 잔여 연차가 1일 차감됩니다
             </p>
           </div>
         </div>

@@ -83,9 +83,9 @@ export function YearEndTaxView({ currentUser }: YearEndTaxViewProps) {
   return (
     <div>
       <PageHeader
-        breadcrumb={["급여 & 보상 정산", "급여 운영 엔진", "연말정산 시뮬레이터"]}
+        breadcrumb={["급여 & 보상 정산", "급여 운영", "연말정산 시뮬레이터"]}
         title="연말정산 시뮬레이터"
-        subtitle="임직원 직접 입력 방식 가이드 폼 — 공제 항목을 조정하면 요율 검증을 거쳐 예상 환급액이 실시간으로 도출됩니다."
+        subtitle="임직원 직접 입력 방식 안내 양식 — 공제 항목을 조정하면 요율 검증을 거쳐 예상 환급액이 실시간으로 산출됩니다."
         actions={
           <Badge tone="cobalt" dot>
             2026 귀속 · 간이 모델
@@ -95,8 +95,8 @@ export function YearEndTaxView({ currentUser }: YearEndTaxViewProps) {
 
       <div className="grid grid-cols-1 items-start gap-6 xl:grid-cols-[7fr_5fr]">
         <Card
-          title="공제 항목 입력 가이드 폼"
-          subtitle={`총급여 ${fmtKorean(result.gross)} (현재 연봉 기준) — 슬라이더를 움직여 입력하세요`}
+          title="공제 항목 입력 안내 양식"
+          subtitle={`총급여 ${fmtKorean(result.gross)} (현재 연봉 기준) — 조절 막대를 움직여 입력하세요`}
           action={
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-canvas text-ink-500">
               <ReceiptText size={16} strokeWidth={1.75} />
@@ -177,7 +177,7 @@ export function YearEndTaxView({ currentUser }: YearEndTaxViewProps) {
           </Card>
 
           <StatCard
-            label="13월의 보너스 가이드"
+            label="13월의 월급 안내"
             value={isRefund ? "환급 예상" : "납부 예상"}
             detail="연금저축 납입액을 늘리면 세액공제 한도(600만 원)까지 환급액이 늘어나요"
             accent={isRefund ? "mint" : "alert"}

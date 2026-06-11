@@ -48,9 +48,9 @@ export function LeaveApplyView({
   return (
     <div>
       <PageHeader
-        breadcrumb={["근태 & 시간 관리", "휴가 & 휴직 관리", "상시 휴가 신청 프로세스"]}
-        title="상시 휴가 신청 프로세스"
-        subtitle="대화형 인터페이스 기반으로 연차 · 반차 · 경조휴가를 신청하고 대체근무자를 지정합니다 — AI가 커버리지와 결재 라인을 자동 구성합니다."
+        breadcrumb={["근태 & 시간 관리", "휴가 & 휴직 관리", "상시 휴가 신청"]}
+        title="상시 휴가 신청"
+        subtitle="대화 방식으로 연차 · 반차 · 경조휴가를 신청하고 대체근무자를 지정합니다 — AI가 인력 공백과 결재 라인을 자동 구성합니다."
       />
 
       <div className="grid grid-cols-1 items-start gap-6 xl:grid-cols-3">
@@ -122,7 +122,7 @@ export function LeaveApplyView({
             icon={<Sparkles size={16} />}
             onClick={() => onStartLeave(currentUser.id)}
           >
-            대화형 AI 어드바이저로 신청 진행
+            대화형 AI 도우미로 신청 진행
           </Button>
         </Card>
 
@@ -140,7 +140,7 @@ export function LeaveApplyView({
               진행 중인 신청이 없습니다
               <br />
               <span className="text-xs">
-                AI 어드바이저로 신청하면 이곳에서 결재 상태를 추적할 수 있어요
+                AI 도우미로 신청하면 이곳에서 결재 상태를 추적할 수 있어요
               </span>
             </p>
           ) : (
@@ -156,7 +156,7 @@ export function LeaveApplyView({
                   </div>
                   <p className="mt-1 text-[13px] font-medium">{item.title}</p>
                   <p className="mt-0.5 text-xs text-ink-400">
-                    결재 라인: 팀 리더 → HRBP → 자동 전결
+                    결재 라인: 팀장 → HRBP → 자동 전결
                   </p>
                 </li>
               ))}
@@ -165,7 +165,7 @@ export function LeaveApplyView({
         </Card>
 
         <Card
-          title="팀 휴가 캘린더 피드"
+          title="팀 휴가 일정 모아보기"
           subtitle="결재 대기 중인 전사 연차 신청 흐름"
         >
           {leaveQueue.length === 0 ? (

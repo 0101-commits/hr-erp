@@ -61,8 +61,8 @@ export function ProfilesView({ employees, onOpenProfile }: ProfilesViewProps) {
   return (
     <div>
       <PageHeader
-        breadcrumb={["조직 & 인사 관리", "임직원 생애주기", "사원 프로필 마스터"]}
-        title="사원 프로필 마스터"
+        breadcrumb={["조직 & 인사 관리", "임직원 생애주기", "사원 종합 프로필"]}
+        title="사원 종합 프로필"
         subtitle={`전사 ${WORKFORCE_SIZE.toLocaleString("ko-KR")}명의 개인 신상 · 경력 · 역량 평가 이력을 통합 관리 — 행을 클릭하면 통합 프로필 패널이 열립니다.`}
         actions={
           <Badge tone="mint" dot>

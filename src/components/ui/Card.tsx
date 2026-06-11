@@ -1,7 +1,10 @@
 import type { HTMLAttributes, ReactNode } from "react";
+import { HelpTip } from "./HelpTip";
 
 interface CardProps extends HTMLAttributes<HTMLElement> {
   title?: string;
+  /* 전문 용어 설명 — '?' 아이콘 호버 시 말풍선으로 표시 */
+  help?: string;
   subtitle?: string;
   action?: ReactNode;
   padding?: "default" | "flush" | "roomy";
@@ -16,6 +19,7 @@ const PADDING_CLASSES: Record<NonNullable<CardProps["padding"]>, string> = {
 
 export function Card({
   title,
+  help,
   subtitle,
   action,
   padding = "default",
@@ -34,8 +38,9 @@ export function Card({
         >
           <div>
             {title && (
-              <h2 className="text-[17px] font-semibold tracking-snug text-ink">
+              <h2 className="flex items-center gap-2 text-[17px] font-semibold tracking-snug text-ink">
                 {title}
+                {help && <HelpTip text={help} />}
               </h2>
             )}
             {subtitle && (

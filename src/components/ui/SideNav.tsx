@@ -41,7 +41,7 @@ export function SideNav({ sections, active, onChange }: SideNavProps) {
     return key ? [key] : [];
   });
 
-  /* 옴니바 등 외부 내비게이션 시 활성 라우트가 속한 대메뉴 자동 펼침 */
+  /* 통합 검색 등 외부 이동 시 활성 라우트가 속한 대메뉴 자동 펼침 */
   useEffect(() => {
     const key = sectionOf(sections, active);
     if (key) {

@@ -62,8 +62,8 @@ export function WorkRiskView({
   return (
     <div>
       <PageHeader
-        breadcrumb={["근태 & 시간 관리", "근로 시간 제어", "근로 제한 리스크 알림"]}
-        title="근로 제한 리스크 알림"
+        breadcrumb={["근태 & 시간 관리", "근로 시간 제어", "근로 제한 위험 알림"]}
+        title="근로 제한 위험 알림"
         subtitle={`주 ${WEEKLY_CAP_HOURS}시간 한도 근접 대상자를 자동 추출하고 조직장에게 사전 경고를 발송합니다 — 이번 주 예상 근로시간 기준.`}
         actions={
           <Button
@@ -71,7 +71,7 @@ export function WorkRiskView({
             icon={<BellRing size={15} />}
             onClick={() =>
               showToast(
-                `조직장 ${deptRank.length}명에게 리스크 사전 경고 알림을 발송했어요`
+                `조직장 ${deptRank.length}명에게 사전 경고 알림을 발송했어요`
               )
             }
           >
@@ -89,8 +89,9 @@ export function WorkRiskView({
         />
         <StatCard
           label="주의 (48–50시간)"
+          help="HRBP(HR Business Partner)는 특정 사업부를 전담하며 현장 가까이에서 인사 업무를 지원하는 인사 담당자입니다."
           value={`${warn.length}명`}
-          detail="HRBP 모니터링 대상"
+          detail="HRBP 집중 관찰 대상"
         />
         <StatCard
           label="정상 범위"
@@ -155,7 +156,7 @@ export function WorkRiskView({
 
         <Card
           title="부서별 평균 근로시간"
-          subtitle="평균이 높은 순 — 리스크 인원이 많은 조직부터 개입하세요"
+          subtitle="평균이 높은 순 — 한도 근접 인원이 많은 조직부터 개입하세요"
         >
           <ul className="flex flex-col gap-4">
             {deptRank.map((row) => (

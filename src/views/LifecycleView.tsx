@@ -162,14 +162,15 @@ export function LifecycleView({ showToast }: LifecycleViewProps) {
   return (
     <div>
       <PageHeader
-        breadcrumb={["조직 & 인사 관리", "임직원 생애주기", "온보딩/오프보딩 가이드"]}
-        title="온보딩 / 오프보딩 가이드"
-        subtitle="입퇴사자 서류 자동 수집 워크플로우와 부서별 맞춤형 체크리스트 매핑 — 단계를 클릭해 완료 처리할 수 있습니다."
+        breadcrumb={["조직 & 인사 관리", "임직원 생애주기", "입사·퇴사 절차 안내"]}
+        title="입사·퇴사 절차 안내"
+        help="입사 절차(온보딩)는 신규 입사자가 조직에 적응하도록 서류·교육·장비 준비를 챙기는 과정이고, 퇴사 절차(오프보딩)는 인수인계·자산 반납·권한 회수를 빠짐없이 마무리하는 과정입니다."
+        subtitle="입퇴사자 서류 자동 수집과 부서별 맞춤 체크리스트 연결 — 단계를 클릭해 완료 처리할 수 있습니다."
       />
 
       <div className="grid grid-cols-1 items-start gap-6 xl:grid-cols-2">
         <Card
-          title="온보딩 진행 현황"
+          title="입사 절차 진행 현황"
           subtitle={`입사 예정·진행 중 ${onboarding.length}명 · 서류는 제출 즉시 자동 수집됩니다`}
           action={
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-canvas text-ink-500">
@@ -192,7 +193,7 @@ export function LifecycleView({ showToast }: LifecycleViewProps) {
 
         <div className="flex flex-col gap-6">
           <Card
-            title="오프보딩 진행 현황"
+            title="퇴사 절차 진행 현황"
             subtitle={`퇴사 예정 ${offboarding.length}명 · 자산 반납과 권한 회수를 추적합니다`}
             action={
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-canvas text-ink-500">
@@ -214,8 +215,8 @@ export function LifecycleView({ showToast }: LifecycleViewProps) {
           </Card>
 
           <Card
-            title="부서별 맞춤형 체크리스트 매핑"
-            subtitle="공통 단계 외에 부서 유형별 추가 단계가 자동 매핑됩니다"
+            title="부서별 맞춤 체크리스트"
+            subtitle="공통 단계 외에 부서 유형별 추가 단계가 자동으로 연결됩니다"
             action={
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-canvas text-ink-500">
                 <Map size={16} strokeWidth={1.75} />
