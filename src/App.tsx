@@ -24,6 +24,7 @@ import {
   type RouteId,
 } from "./data/mockData";
 import { AppointmentSimView } from "./views/AppointmentSimView";
+import { LoginView } from "./views/LoginView";
 import { AssistantView } from "./views/AssistantView";
 import { CalibrationView } from "./views/CalibrationView";
 import { DashboardHub } from "./views/DashboardHub";
@@ -210,7 +211,12 @@ const NAV_SECTIONS: SideNavSection[] = [
   },
 ];
 
+const AUTH_STORAGE_KEY = "nx-hr-authed";
+
 export default function App() {
+  const [authed, setAuthed] = useState(
+    () => sessionStorage.getItem(AUTH_STORAGE_KEY) === "1"
+  );
   const [route, setRoute] = useState<RouteId>("hub");
   const [employees, setEmployees] = useState<Employee[]>(INITIAL_EMPLOYEES);
   const [raisePct, setRaisePct] =
@@ -242,6 +248,18 @@ export default function App() {
 
   const showToast = useCallback((message: string) => {
     setToast({ id: Date.now(), message });
+  }, []);
+
+  const login = useCallback(() => {
+    sessionStorage.setItem(AUTH_STORAGE_KEY, "1");
+    setAuthed(true);
+  }, []);
+
+  const logout = useCallback(() => {
+    sessionStorage.removeItem(AUTH_STORAGE_KEY);
+    setAuthed(false);
+    setRoute("hub");
+    setPanel(null);
   }, []);
 
   /* 등급 변경 → 성과급 재산정 → 시뮬레이터·리워드·탤런트에 즉시 전파 */
@@ -500,6 +518,10 @@ export default function App() {
     }
   };
 
+  if (!authed) {
+    return <LoginView onLogin={login} />;
+  }
+
   return (
     <div className="flex min-h-screen flex-col bg-canvas">
       <TopBar
@@ -508,6 +530,7 @@ export default function App() {
         notificationCount={approvals.length}
         onCommand={handleCommand}
         onOpenProfile={() => openProfile(currentUser.id)}
+        onLogout={logout}
       />
 
       <div className="flex flex-1">

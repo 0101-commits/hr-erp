@@ -1,4 +1,4 @@
-import { Bell, Cpu, Sparkles } from "lucide-react";
+import { Bell, Cpu, LogOut, Sparkles } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { OMNIBAR_SUGGESTIONS } from "../../data/mockData";
 import { Avatar } from "../ui/Avatar";
@@ -9,6 +9,7 @@ interface TopBarProps {
   notificationCount: number;
   onCommand: (query: string) => void;
   onOpenProfile: () => void;
+  onLogout: () => void;
 }
 
 export function TopBar({
@@ -17,6 +18,7 @@ export function TopBar({
   notificationCount,
   onCommand,
   onOpenProfile,
+  onLogout,
 }: TopBarProps) {
   const [query, setQuery] = useState("");
   const [focused, setFocused] = useState(false);
@@ -132,6 +134,15 @@ export function TopBar({
           className="h-10 w-10 rounded-full transition-transform hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cobalt"
         >
           <Avatar name={userName} size={40} />
+        </button>
+        <button
+          type="button"
+          onClick={onLogout}
+          aria-label="로그아웃"
+          title="로그아웃"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-hairline bg-surface text-ink-500 transition-colors hover:bg-canvas"
+        >
+          <LogOut size={17} strokeWidth={1.75} />
         </button>
       </div>
     </header>
