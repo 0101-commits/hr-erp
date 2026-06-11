@@ -66,9 +66,9 @@ export function OrgChartView({ employees, onOpenProfile }: OrgChartViewProps) {
   return (
     <div>
       <PageHeader
-        breadcrumb={["조직 & 인사 관리", "마스터 인사 데이터", "전사 조직도 관리"]}
+        breadcrumb={["조직 & 인사 관리", "인사 기준 정보", "전사 조직도 관리"]}
         title="전사 조직도 관리"
-        subtitle="계열사/법인별 다중 조직도를 직관적인 노드 트리 뷰로 — 팀 노드를 펼치면 구성원과 리더 정보가 표시됩니다."
+        subtitle="계열사/법인별 다중 조직도를 직관적인 계층 구조로 — 팀을 펼치면 구성원과 조직장 정보가 표시됩니다."
         actions={
           <Select
             options={ENTITY_NAMES.map((name) => ({ value: name, label: name }))}
@@ -91,8 +91,8 @@ export function OrgChartView({ employees, onOpenProfile }: OrgChartViewProps) {
       </div>
 
       <Card
-        title="노드 트리 뷰"
-        subtitle="법인 → 부문 → 팀 계층 구조 · 팀을 클릭하면 구성원 노드가 펼쳐집니다"
+        title="조직 계층 보기"
+        subtitle="법인 → 부문 → 팀 계층 구조 · 팀을 클릭하면 구성원 목록이 펼쳐집니다"
         action={
           <span className="flex h-9 w-9 items-center justify-center rounded-full bg-canvas text-ink-500">
             <Network size={16} strokeWidth={1.75} />

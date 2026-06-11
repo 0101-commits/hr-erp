@@ -73,7 +73,8 @@ export function ReceiptView({ showToast }: ReceiptViewProps) {
       <PageHeader
         breadcrumb={["복리후생 & 지원", "비용 영수증 청구", "AI 영수증 자동 인식"]}
         title="AI 영수증 자동 인식"
-        subtitle="모바일/웹으로 업로드한 영수증의 문자를 추출(OCR)하고 비용 전표를 자동 생성합니다 — 신뢰도가 낮은 건은 검토 큐로 분리됩니다."
+        help="OCR(광학 문자 인식)은 사진·스캔 이미지 속 글자를 컴퓨터가 읽을 수 있는 텍스트로 변환하는 기술입니다. 영수증의 상호·일자·금액을 자동으로 읽어 전표를 만들어 줍니다."
+        subtitle="모바일/웹으로 올린 영수증의 문자를 추출(OCR)하고 비용 전표를 자동 생성합니다 — 신뢰도가 낮은 건은 검토 대기함으로 분리됩니다."
         actions={
           <Button
             variant="cobalt"
@@ -88,7 +89,7 @@ export function ReceiptView({ showToast }: ReceiptViewProps) {
       />
 
       <div className="mb-6 grid grid-cols-1 gap-4 md:grid-cols-3">
-        <StatCard label="이번 달 청구 합계" value={fmtWon(monthTotal)} detail={`${receipts.length}건 업로드`} accent="mint" />
+        <StatCard label="이번 달 청구 합계" value={fmtWon(monthTotal)} detail={`${receipts.length}건 등록`} accent="mint" />
         <StatCard label="전표 자동 생성" value={`${completed.length}건`} detail="OCR 신뢰도 80% 이상" />
         <StatCard label="검토 필요" value={`${review.length}건`} detail="신뢰도 미달 — 수기 확인" accent={review.length > 0 ? "alert" : "none"} />
       </div>
@@ -139,7 +140,7 @@ export function ReceiptView({ showToast }: ReceiptViewProps) {
         </Card>
 
         <Card
-          title="자동 생성 전표 큐"
+          title="자동 생성 전표 대기함"
           subtitle="OCR 추출 결과 — 신뢰도 80% 미만은 검토 필요로 분류"
           padding="flush"
         >

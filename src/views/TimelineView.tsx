@@ -29,9 +29,9 @@ export function TimelineView({ approvals }: TimelineViewProps) {
   return (
     <div>
       <PageHeader
-        breadcrumb={["홈 & 워크스페이스", "개인화 포털", "알림 및 타임라인"]}
-        title="알림 및 타임라인"
-        subtitle="상시 피드백 알림, 전사 공지 배너, 조직 변동 사항을 하나의 스트림 피드로 — 놓치면 안 되는 변화를 시간순으로 따라가세요."
+        breadcrumb={["홈 & 업무 공간", "개인 맞춤 화면", "알림 및 소식"]}
+        title="알림 및 소식"
+        subtitle="상시 피드백 알림, 전사 공지, 조직 변동 사항을 하나의 흐름으로 — 놓치면 안 되는 변화를 시간순으로 따라가세요."
         actions={
           <Badge tone="mint" dot>
             새 알림 {approvals.length + PEER_FEEDBACK.length}건
@@ -98,7 +98,7 @@ export function TimelineView({ approvals }: TimelineViewProps) {
         </Card>
 
         <Card
-          title="조직 변동 스트림"
+          title="조직 변동 소식"
           subtitle="발령 · 입퇴사 · 조직 개편이 시간순으로 흐릅니다"
           action={
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-canvas text-ink-500">

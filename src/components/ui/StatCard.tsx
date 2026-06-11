@@ -1,7 +1,10 @@
 import type { ReactNode } from "react";
+import { HelpTip } from "./HelpTip";
 
 interface StatCardProps {
   label: string;
+  /* 전문 용어 설명 — '?' 아이콘 호버 시 말풍선으로 표시 */
+  help?: string;
   value: string;
   detail?: string;
   accent?: "none" | "mint" | "alert";
@@ -11,6 +14,7 @@ interface StatCardProps {
 
 export function StatCard({
   label,
+  help,
   value,
   detail,
   accent = "none",
@@ -28,7 +32,10 @@ export function StatCard({
     <div
       className={`flex flex-col rounded-field border p-5 ${surface} ${square ? "aspect-square justify-between" : "gap-1.5"}`}
     >
-      <span className="type-label">{label}</span>
+      <span className="type-label flex items-center gap-1.5">
+        {label}
+        {help && <HelpTip text={help} size={13} />}
+      </span>
       <div>
         <div className="type-display text-[28px] tabular-nums text-ink">
           {value}

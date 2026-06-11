@@ -71,7 +71,7 @@ export function LoginView({ onLogin }: LoginViewProps) {
               NexChip <span className="font-light">HR Enterprise</span>
             </h1>
             <p className="mt-1.5 text-sm text-ink-400">
-              넥스칩 세미콘 · People &amp; Rewards 관리자 콘솔
+              넥스칩 세미콘 · 통합 인사 시스템 관리자 화면
             </p>
           </div>
         </div>

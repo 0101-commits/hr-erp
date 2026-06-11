@@ -83,9 +83,10 @@ export function RewardsView({
   return (
     <div>
       <PageHeader
-        breadcrumb={["허브", "토탈 리워드 포탈"]}
-        title="토탈 리워드 포탈"
-        subtitle="기본 연봉 · 성과급 · 복리후생 · RSU를 개인별 총보상 관점으로 — 보정 등급과 메리트 인상률이 차트에 실시간 반영됩니다."
+        breadcrumb={["급여 & 보상 정산", "보상 구성", "통합 보상 포털"]}
+        title="통합 보상 포털"
+        help="통합 보상(Total Rewards)은 기본 연봉뿐 아니라 성과급·복리후생·주식 보상(RSU)까지 합쳐 개인이 받는 전체 보상을 한눈에 보는 관점입니다."
+        subtitle="기본 연봉 · 성과급 · 복리후생 · RSU를 개인별 총보상 관점으로 — 보정 등급과 인상률이 차트에 실시간 반영됩니다."
         actions={
           <>
             <Select
@@ -187,7 +188,8 @@ export function RewardsView({
 
         <Card
           title="RSU 부여 및 귀속 일정"
-          subtitle="Vesting Schedule · 귀속 완료분은 부여 시점 평가액 기준"
+          help="RSU(양도제한 조건부 주식)는 일정 기간 재직 등 조건을 충족하면 본인 소유로 확정(귀속)되어 주식으로 받는 보상입니다. 귀속 전에 퇴사하면 잔여분은 소멸됩니다."
+          subtitle="귀속 완료분은 부여 시점 평가액 기준"
         >
           {employee.rsu.length === 0 ? (
             <div className="rounded-field border border-dashed border-hairline p-10 text-center">
@@ -234,7 +236,7 @@ export function RewardsView({
 
       <Card
         title="전사 총보상 상위 15명"
-        subtitle="메리트 인상률 시뮬레이션 반영 연간 총보상 — 막대를 클릭하면 해당 임직원으로 전환됩니다"
+        subtitle="인상률 시뮬레이션 반영 연간 총보상 — 막대를 클릭하면 해당 임직원으로 전환됩니다"
         className="mt-6"
       >
         <div className="h-72 w-full">

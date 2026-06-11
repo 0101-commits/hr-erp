@@ -19,7 +19,7 @@ interface SchedulingViewProps {
 const FLEX_TEMPLATES = [
   {
     id: "tpl-1", name: "시차출퇴근 A", rule: "출근 07:00–10:00 자율 · 일 8시간 고정",
-    target: "상주(OFFICE) 근무자", tone: "mint" as const,
+    target: "상주 근무자", tone: "mint" as const,
   },
   {
     id: "tpl-2", name: "선택근무제", rule: "월 단위 총 근로시간 자율 배분 · 코어타임 13–16시",
@@ -46,7 +46,7 @@ export function SchedulingView({ employees, showToast }: SchedulingViewProps) {
     return map;
   }, [employees]);
 
-  /* 라인별 교대조 로스터 — 제조·연구 라인 부서 집계 */
+  /* 라인별 교대 근무 편성표 — 제조·연구 라인 부서 집계 */
   const roster = useMemo(() => {
     const lineDepts = [
       "이천 P3 제조팀",
@@ -69,9 +69,9 @@ export function SchedulingView({ employees, showToast }: SchedulingViewProps) {
   return (
     <div>
       <PageHeader
-        breadcrumb={["근태 & 시간 관리", "근로 시간 제어", "근무 스케줄링 엔진"]}
-        title="근무 스케줄링 엔진"
-        subtitle="시차출퇴근 · 선택근무 · 탄력근무 등 복잡한 유연근무제 규칙을 템플릿화하고, 라인별 교대조 로스터를 한 화면에서 운용합니다."
+        breadcrumb={["근태 & 시간 관리", "근로 시간 제어", "근무 스케줄 편성"]}
+        title="근무 스케줄 편성"
+        subtitle="시차출퇴근 · 선택근무 · 탄력근무 등 복잡한 유연근무제 규칙을 본보기 양식으로 만들고, 라인별 교대 근무 편성표를 한 화면에서 운용합니다."
       />
 
       {/* 교대 유형 분포 */}
@@ -132,7 +132,7 @@ export function SchedulingView({ employees, showToast }: SchedulingViewProps) {
         </Card>
 
         <Card
-          title="라인별 교대조 로스터"
+          title="라인별 교대 근무 편성표"
           subtitle="이번 주 기준 교대 유형별 배치 인원"
           padding="flush"
           action={
@@ -181,8 +181,8 @@ export function SchedulingView({ employees, showToast }: SchedulingViewProps) {
             </table>
           </div>
           <p className="border-t border-hairline-soft px-7 py-4 text-xs text-ink-400">
-            로스터는 발령·온보딩 데이터와 실시간 연동되며, 주 52시간 한도를 초과하는
-            배치는 스케줄링 엔진이 자동 차단합니다.
+            편성표는 발령·입사 데이터와 실시간 연동되며, 주 52시간 한도를 초과하는
+            배치는 시스템이 자동 차단합니다.
           </p>
         </Card>
       </div>

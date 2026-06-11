@@ -57,8 +57,9 @@ export function MeritView({
   return (
     <div>
       <PageHeader
-        breadcrumb={["허브", "메리트 매트릭스 시뮬레이터"]}
+        breadcrumb={["급여 & 보상 정산", "경영 비용 분석", "메리트 매트릭스 시뮬레이터"]}
         title="메리트 매트릭스 시뮬레이터"
+        help="메리트 매트릭스는 성과 등급별로 연봉 인상률을 차등 적용해 한정된 인상 예산을 배분하는 보상 설계 기법입니다. 등급별 인상률을 조정하며 예산 안에서 최적의 조합을 찾을 수 있습니다."
         subtitle={`전사 ${WORKFORCE_SIZE.toLocaleString("ko-KR")}명 전수 시뮬레이션 · 총 예산 ${fmtEok(BUDGET_POOL)} 원 — 등급별 인원과 평균 연봉은 보정 결과와 실시간 연동됩니다.`}
         actions={
           <Button variant="secondary" icon={<RotateCcw size={15} />} onClick={onReset}>
@@ -82,7 +83,7 @@ export function MeritView({
         <div className="mb-6 flex items-center gap-3 rounded-field bg-mint px-6 py-4 text-sm font-semibold text-ink">
           <CheckCircle2 size={18} className="text-mint-deep" />
           <span>
-            Stable — 안정적인 재정 호라이즌, 예산 풀 내에서 운용 중입니다
+            예산 안정 — 총 예산 한도 안에서 운용 중입니다
           </span>
           <span className="ml-auto font-medium tabular-nums text-mint-deep">
             잔여 {fmtKorean(remaining)}
@@ -92,9 +93,9 @@ export function MeritView({
 
       <div className="mb-6 grid grid-cols-1 gap-4 md:grid-cols-3">
         <StatCard
-          label="총 예산 풀"
+          label="총 인상 예산"
           value={`${fmtEok(BUDGET_POOL)} 원`}
-          detail={`2026 메리트 사이클 · ${WORKFORCE_SIZE.toLocaleString("ko-KR")}명 규모 기준`}
+          detail={`2026 연봉 인상 사이클 · ${WORKFORCE_SIZE.toLocaleString("ko-KR")}명 규모 기준`}
         />
         <StatCard
           label="인상 소요 합계"

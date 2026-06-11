@@ -49,9 +49,10 @@ export function TalentView({ employees, onOpenProfile }: TalentViewProps) {
   return (
     <div>
       <PageHeader
-        breadcrumb={["허브", "9-Box 탤런트 맵핑"]}
-        title="9-Box 탤런트 맵핑"
-        subtitle="성과 × 잠재력 매트릭스 — 보정 등급과 실시간 연동되며, 칩을 클릭하면 프로필 패널이 열립니다."
+        breadcrumb={["성과 & 몰입 관리", "상시 다면 평가", "9-Box 인재 맵"]}
+        title="9-Box 인재 맵"
+        help="9-Box는 성과(세로축)와 잠재력(가로축)을 각각 3단계로 나눠 인재를 9개 영역으로 분류하는 인재 검토 기법입니다. 핵심 인재 발굴과 육성·승계 계획 수립에 활용됩니다."
+        subtitle="성과 × 잠재력 매트릭스 — 보정 등급과 실시간 연동되며, 이름표를 클릭하면 프로필 패널이 열립니다."
         actions={
           <Badge tone="mint" dot>
             핵심 인재 {starCount}명
@@ -63,7 +64,7 @@ export function TalentView({ employees, onOpenProfile }: TalentViewProps) {
         <div className="flex gap-5">
           <div className="flex w-10 flex-none items-center justify-center">
             <span className="type-label -rotate-90 whitespace-nowrap">
-              성과 (Performance)
+              성과
             </span>
           </div>
 
