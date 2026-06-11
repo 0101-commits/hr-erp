@@ -101,7 +101,7 @@ export function AppointmentSimView({
   return (
     <div>
       <PageHeader
-        breadcrumb={["조직 & 인사 관리", "마스터 인사 데이터", "인사 발령 시뮬레이터"]}
+        breadcrumb={["조직 & 인사 관리", "인사 기준 정보", "인사 발령 시뮬레이터"]}
         title="인사 발령 시뮬레이터"
         subtitle="발령 예정 정보를 사전 입력하고 조직 개편에 따른 인력·인건비 변동을 발령 확정 전에 시뮬레이션합니다."
         actions={
@@ -230,7 +230,7 @@ export function AppointmentSimView({
 
         <div className="flex flex-col gap-6">
           <Card
-            title="발령 예정 큐"
+            title="발령 예정 목록"
             subtitle="등록된 발령 예정 정보 — 아래 조직 영향 분석에 즉시 반영됩니다"
           >
             {pending.length === 0 ? (

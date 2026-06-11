@@ -43,11 +43,11 @@ const ORG_OBJECTIVES = [
   {
     id: "org-3",
     owner: "경영지원부문",
-    title: "핵심 인재 리텐션과 데이터 기반 인력 운영 체계 구축",
+    title: "핵심 인재 유지와 데이터 기반 인력 운영 체계 구축",
     progress: 66,
     krs: [
       { title: "핵심 인재 유지율 97% 방어", progress: 92 },
-      { title: "피플 애널리틱스 대시보드 v2 론칭", progress: 64 },
+      { title: "인사 데이터 분석 대시보드 v2 구축", progress: 64 },
       { title: "2026 보상 사이클 적시 완결률 100%", progress: 78 },
     ],
   },
@@ -64,9 +64,10 @@ export function OkrView({ currentUser }: OkrViewProps) {
   return (
     <div>
       <PageHeader
-        breadcrumb={["성과 & 몰입 관리", "목표 정렬 프로세스", "전사/조직/개인 OKR"]}
+        breadcrumb={["성과 & 몰입 관리", "목표 정렬", "전사/조직/개인 OKR"]}
         title="전사 / 조직 / 개인 OKR"
-        subtitle="상위 목표와 하위 목표 간 유기적 계층 구조 정렬 — 모든 진척도는 하위 KR에서 상위 목표로 실시간 롤업됩니다."
+        help="OKR(Objectives & Key Results)은 도전적인 목표(Objective)와 달성도를 수치로 측정하는 핵심 결과(Key Result)로 구성된 목표 관리 기법입니다. 전사 → 조직 → 개인으로 목표를 정렬해 같은 방향을 보게 합니다."
+        subtitle="상위 목표와 하위 목표 간 유기적 계층 구조 정렬 — 모든 진척도는 하위 핵심 결과에서 상위 목표로 실시간 합산됩니다."
         actions={
           <Badge tone="mint" dot>
             2026 2분기 사이클
@@ -75,7 +76,7 @@ export function OkrView({ currentUser }: OkrViewProps) {
       />
 
       <div className="mb-6 grid grid-cols-1 gap-4 md:grid-cols-3">
-        <StatCard label="전사 목표 진척" value={`${COMPANY_OBJECTIVE.progress}%`} detail="하위 조직 진척 자동 롤업" accent="mint" />
+        <StatCard label="전사 목표 진척" value={`${COMPANY_OBJECTIVE.progress}%`} detail="하위 조직 진척 자동 합산" accent="mint" />
         <StatCard label="조직 목표 평균" value={`${avgOrgProgress}%`} detail={`${ORG_OBJECTIVES.length}개 부문 목표`} />
         <StatCard label="내 KR 평균" value={`${myAvg}%`} detail={`${currentUser.name} · ${MY_KEY_RESULTS.length}개 핵심 결과`} />
       </div>
@@ -93,8 +94,8 @@ export function OkrView({ currentUser }: OkrViewProps) {
         <div className="rounded-field bg-ink p-6 text-white">
           <div className="flex items-center gap-2">
             <Target size={15} className="text-mint" />
-            <span className="text-[11px] font-semibold uppercase tracking-label text-white/60">
-              Company Objective
+            <span className="text-[11px] font-semibold tracking-label text-white/60">
+              전사 목표
             </span>
             <span className="ml-auto text-xl font-semibold tabular-nums">
               {COMPANY_OBJECTIVE.progress}%
@@ -186,7 +187,7 @@ export function OkrView({ currentUser }: OkrViewProps) {
                 ))}
               </ul>
               <p className="mt-4 text-xs text-mint-deep">
-                상위 목표 ‘핵심 인재 리텐션과 데이터 기반 인력 운영 체계 구축’에 정렬됨
+                상위 목표 ‘핵심 인재 유지와 데이터 기반 인력 운영 체계 구축’에 정렬됨
               </p>
             </div>
           </div>

@@ -1,8 +1,11 @@
 import type { ReactNode } from "react";
+import { HelpTip } from "./HelpTip";
 
 interface PageHeaderProps {
   breadcrumb?: string[];
   title: string;
+  /* 전문 용어 설명 — '?' 아이콘 호버 시 말풍선으로 표시 */
+  help?: string;
   subtitle?: string;
   actions?: ReactNode;
 }
@@ -10,6 +13,7 @@ interface PageHeaderProps {
 export function PageHeader({
   breadcrumb,
   title,
+  help,
   subtitle,
   actions,
 }: PageHeaderProps) {
@@ -34,7 +38,10 @@ export function PageHeader({
             ))}
           </nav>
         )}
-        <h1 className="type-display text-4xl text-ink">{title}</h1>
+        <h1 className="type-display flex items-center gap-2.5 text-4xl text-ink">
+          {title}
+          {help && <HelpTip text={help} size={18} />}
+        </h1>
         {subtitle && (
           <p className="mt-2.5 max-w-2xl text-[15px] leading-relaxed text-ink-400">
             {subtitle}

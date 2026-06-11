@@ -53,7 +53,7 @@ export function TopBar({
             NexChip <span className="font-light">HR Enterprise</span>
           </div>
           <div className="text-[11px] text-ink-400">
-            넥스칩 세미콘 · People &amp; Rewards
+            넥스칩 세미콘 · 통합 인사 시스템
           </div>
         </div>
       </div>
@@ -80,7 +80,7 @@ export function TopBar({
             }}
             placeholder="AI에게 무엇이든 요청하세요 — “연차 신청”, “김도현 프로필”, “메리트 시뮬레이터”"
             className="w-full bg-transparent text-sm text-ink outline-none placeholder:text-ink-300"
-            aria-label="AI 옴니바"
+            aria-label="AI 통합 검색"
           />
           <kbd className="hidden flex-none rounded-cell border border-hairline bg-surface px-1.5 py-0.5 text-[10px] font-medium text-ink-400 md:block">
             ⏎

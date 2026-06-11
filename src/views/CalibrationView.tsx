@@ -80,7 +80,8 @@ export function CalibrationView({
       <PageHeader
         breadcrumb={["성과 & 몰입 관리", "상시 다면 평가", "종합 인사 평가 매트릭스"]}
         title="종합 인사 평가 매트릭스"
-        subtitle={`2026 상반기 평가 등급 보정(Calibration) 세션 · 전사 ${employees.length.toLocaleString("ko-KR")}명 — 다면 피드백 결과를 바탕으로 등급을 보정하면 성과급과 시뮬레이터, 탤런트 보드에 즉시 반영됩니다.`}
+        help="평가 등급 보정(캘리브레이션)은 부서마다 다른 평가 눈높이를 맞추기 위해 조직장들이 모여 등급 분포를 함께 검토·조정하는 절차입니다. 특정 부서에 후한 평가가 쏠리는 것을 막아 평가 공정성을 높입니다."
+        subtitle={`2026 상반기 평가 등급 보정(캘리브레이션) 세션 · 전사 ${employees.length.toLocaleString("ko-KR")}명 — 다면 피드백 결과를 바탕으로 등급을 보정하면 성과급과 시뮬레이터, 9-Box 인재 맵에 즉시 반영됩니다.`}
         actions={
           <Button variant="cobalt" icon={<ShieldCheck size={16} />} onClick={onFinalize}>
             보정 결과 확정

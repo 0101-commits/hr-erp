@@ -17,11 +17,11 @@ const KPIS = [
   },
   {
     id: "kpi-3", name: "월 웨이퍼 투입량", unit: "K장", current: 128, target: 140,
-    source: "MES", synced: "5분 전", milestone: "P4 캐파 증설 2단계",
+    source: "MES", synced: "5분 전", milestone: "P4 생산능력 증설 2단계",
   },
   {
     id: "kpi-4", name: "고객 납기 준수율", unit: "%", current: 96.2, target: 98,
-    source: "ERP", synced: "1시간 전", milestone: "북미 고객 QBR 약속 지표",
+    source: "ERP", synced: "1시간 전", milestone: "북미 고객 분기 점검 약속 지표",
   },
   {
     id: "kpi-5", name: "인당 매출", unit: "억 원", current: 11.8, target: 12.5,
@@ -29,7 +29,7 @@ const KPIS = [
   },
   {
     id: "kpi-6", name: "핵심 인재 유지율", unit: "%", current: 96.8, target: 97,
-    source: "HRIS", synced: "방금", milestone: "리텐션 프로그램 2차",
+    source: "HRIS", synced: "방금", milestone: "핵심인재 유지 프로그램 2차",
   },
 ];
 
@@ -50,9 +50,10 @@ export function KpiView() {
   return (
     <div>
       <PageHeader
-        breadcrumb={["성과 & 몰입 관리", "목표 정렬 프로세스", "KPI 실적 트래킹"]}
-        title="KPI 실적 트래킹"
-        subtitle="정량 지표 중심 마일스톤 관리 — MES · YMS · ERP · HRIS 데이터 소스와 연동되어 실적이 자동 업데이트됩니다."
+        breadcrumb={["성과 & 몰입 관리", "목표 정렬", "KPI 실적 추적"]}
+        title="KPI 실적 추적"
+        help="KPI(핵심 성과 지표)는 조직의 목표 달성 정도를 정량적으로 측정하는 대표 지표입니다. 수율·납기 준수율처럼 숫자로 추적하며, 목표 대비 달성률로 관리합니다."
+        subtitle="정량 지표 중심 단계별 목표 관리 — MES · YMS · ERP · HRIS 데이터와 연동되어 실적이 자동 갱신됩니다."
         actions={
           <Badge tone="mint" dot>
             데이터 소스 4종 연동 중
@@ -63,7 +64,7 @@ export function KpiView() {
       <div className="mb-6 grid grid-cols-1 gap-4 md:grid-cols-3">
         <StatCard label="평균 달성률" value={`${avg}%`} detail={`${KPIS.length}개 지표 기준`} accent="mint" />
         <StatCard label="목표 달성" value={`${achieved}개`} detail="달성률 100% 이상" />
-        <StatCard label="리스크 지표" value={`${atRisk}개`} detail="달성률 92% 미만 — 점검 필요" accent={atRisk > 0 ? "alert" : "none"} />
+        <StatCard label="위험 지표" value={`${atRisk}개`} detail="달성률 92% 미만 — 점검 필요" accent={atRisk > 0 ? "alert" : "none"} />
       </div>
 
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">

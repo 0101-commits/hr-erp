@@ -69,8 +69,8 @@ export function LaborCostView({ employees }: LaborCostViewProps) {
   return (
     <div>
       <PageHeader
-        breadcrumb={["급여 & 보상 정산", "경영 비용 분석", "인력 운영비 다각도 리포트"]}
-        title="인력 운영비 다각도 리포트"
+        breadcrumb={["급여 & 보상 정산", "경영 비용 분석", "인력 운영비 종합 보고"]}
+        title="인력 운영비 종합 보고"
         subtitle="부서별/직무별 인건비 추이 통계 분석과 향후 채용 계획에 따른 비용 예측 — 총보상(연봉+성과급+복리후생) 기준."
       />
 
@@ -181,7 +181,7 @@ export function LaborCostView({ employees }: LaborCostViewProps) {
 
       <Card
         title="채용 계획 비용 예측"
-        subtitle="신규 채용 인원과 평균 제시 연봉을 조정하면 연간 운영비 영향이 즉시 계산됩니다"
+        subtitle="신규 채용 인원과 평균 제시 연봉을 조절하면 연간 운영비 영향이 즉시 계산됩니다"
         className="mt-6"
         action={
           <span className="flex h-9 w-9 items-center justify-center rounded-full bg-canvas text-ink-500">

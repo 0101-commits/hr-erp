@@ -56,9 +56,9 @@ export function AssistantView({
   return (
     <div>
       <PageHeader
-        breadcrumb={["홈 & 워크스페이스", "지능형 통합 바", "AI 옴니 어시스턴트"]}
-        title="AI 옴니 어시스턴트"
-        subtitle="자연어로 기능을 검색하고, 휴가를 즉시 신청하고, 사내 규정을 바로 질의응답 — 흩어진 HR 기능을 하나의 대화 창구로 모았습니다."
+        breadcrumb={["홈 & 업무 공간", "지능형 통합 검색", "AI 통합 비서"]}
+        title="AI 통합 비서"
+        subtitle="자연어로 기능을 검색하고, 휴가를 즉시 신청하고, 사내 규정을 바로 질의응답 — 흩어진 인사 기능을 하나의 대화 창구로 모았습니다."
       />
 
       {/* 자연어 명령 히어로 */}
@@ -66,7 +66,7 @@ export function AssistantView({
         <div className="mx-auto max-w-2xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold text-mint">
             <Sparkles size={13} />
-            Natural Language HR Command
+            자연어 인사 업무 명령
           </span>
           <h2 className="type-display mt-4 text-[32px]">
             {currentUser.name} 님, 무엇을 도와드릴까요?
@@ -81,7 +81,7 @@ export function AssistantView({
               }}
               placeholder="예: “6월 15일 연차 신청해줘”, “조직도 보여줘”, “연말정산 시뮬레이터”"
               className="w-full bg-transparent text-sm outline-none placeholder:text-ink-300"
-              aria-label="AI 어시스턴트 명령 입력"
+              aria-label="AI 비서 명령 입력"
             />
             <Button size="sm" onClick={submit}>
               실행
@@ -105,7 +105,7 @@ export function AssistantView({
       <div className="grid grid-cols-1 items-start gap-6 xl:grid-cols-[5fr_7fr]">
         <Card
           title="휴가 즉시 신청"
-          subtitle="대화형 어드바이저가 커버리지와 결재 라인을 자율 평가합니다"
+          subtitle="대화형 도우미가 인력 공백과 결재 라인을 자동 검토합니다"
           action={
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-canvas text-ink-500">
               <CalendarCheck size={16} strokeWidth={1.75} />
@@ -124,10 +124,10 @@ export function AssistantView({
               icon={<Sparkles size={16} />}
               onClick={() => onStartLeave(currentUser.id)}
             >
-              AI 연차 신청 어드바이저 실행
+              AI 연차 신청 도우미 실행
             </Button>
             <p className="mt-2.5 text-xs text-ink-400">
-              팀 커버리지 · 라인 가동률 · 결재 라인을 AI가 자동 점검합니다
+              팀 인력 공백 · 라인 가동률 · 결재 라인을 AI가 자동 점검합니다
             </p>
           </div>
         </Card>

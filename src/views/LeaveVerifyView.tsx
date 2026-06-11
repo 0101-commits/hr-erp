@@ -71,9 +71,9 @@ export function LeaveVerifyView({
   return (
     <div>
       <PageHeader
-        breadcrumb={["근태 & 시간 관리", "휴가 & 휴직 관리", "법정 휴가 자동 검증 시스템"]}
-        title="법정 휴가 자동 검증 시스템"
-        subtitle="모성보호 · 육아기 단축근무 등 법정 제도의 적격 여부(자녀 연령, 근속 등)를 인사 마스터 데이터 기준으로 자동 필터링합니다."
+        breadcrumb={["근태 & 시간 관리", "휴가 & 휴직 관리", "법정 휴가 자동 검증"]}
+        title="법정 휴가 자동 검증"
+        subtitle="모성보호 · 육아기 단축근무 등 법정 제도의 적격 여부(자녀 연령, 근속 등)를 인사 기준 정보로 자동 선별합니다."
         actions={
           <Button
             variant="cobalt"
@@ -102,7 +102,7 @@ export function LeaveVerifyView({
           detail="부양 자녀 보유 임직원"
         />
         <StatCard
-          label="장기근속 리프레시 대상"
+          label="장기근속 재충전 휴가 대상"
           value={`${longService.length.toLocaleString("ko-KR")}명`}
           detail="근속 10년 이상 · 5일 특별휴가"
         />
@@ -110,8 +110,8 @@ export function LeaveVerifyView({
 
       <div className="grid grid-cols-1 items-start gap-6 xl:grid-cols-[5fr_7fr]">
         <Card
-          title="법정 제도 검증 룰"
-          subtitle="제도별 적격 조건과 자동 필터링 결과"
+          title="법정 제도 검증 규칙"
+          subtitle="제도별 적격 조건과 자동 선별 결과"
         >
           <ul className="flex flex-col gap-3.5">
             {rules.map((rule) => (

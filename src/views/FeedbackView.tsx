@@ -86,7 +86,8 @@ export function FeedbackView({
       <PageHeader
         breadcrumb={["성과 & 몰입 관리", "상시 다면 평가", "지속적 360도 피드백"]}
         title="지속적 360도 피드백"
-        subtitle="동료 간 수시 감사 메시지와 협업 역량 키워드 기반 상시 태깅 — 누적된 피드백은 종합 인사 평가 매트릭스에 연동됩니다."
+        help="360도 피드백은 상사·동료·후배 등 함께 일하는 다양한 구성원이 서로 피드백을 주고받는 다면 평가 방식입니다. 한 사람의 시각이 아닌 여러 방향(360도)에서 역량을 조명합니다."
+        subtitle="동료 간 수시 감사 메시지와 협업 역량 키워드 선택 — 누적된 피드백은 종합 인사 평가 매트릭스에 연동됩니다."
         actions={
           <Badge tone="mint" dot>
             이번 분기 {feed.length}건
@@ -98,7 +99,7 @@ export function FeedbackView({
         <div className="flex flex-col gap-6">
           <Card
             title="감사 메시지 보내기"
-            subtitle="동료를 검색하고 역량 키워드를 태깅하세요 (최대 3개)"
+            subtitle="동료를 검색하고 역량 키워드를 선택하세요 (최대 3개)"
             action={
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-canvas text-ink-500">
                 <Heart size={16} strokeWidth={1.75} />
@@ -189,7 +190,7 @@ export function FeedbackView({
 
           <Card
             title="역량 키워드 통계"
-            subtitle="이번 분기 가장 많이 태깅된 협업 역량"
+            subtitle="이번 분기 가장 많이 선택된 협업 역량"
             action={
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-canvas text-ink-500">
                 <Tags size={16} strokeWidth={1.75} />
@@ -211,7 +212,7 @@ export function FeedbackView({
         </div>
 
         <Card
-          title="상시 피드백 스트림"
+          title="상시 피드백 모아보기"
           subtitle="최근 도착한 수시 감사 메시지"
         >
           <ul className="flex flex-col gap-5">

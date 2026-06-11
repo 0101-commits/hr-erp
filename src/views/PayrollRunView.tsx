@@ -81,8 +81,8 @@ export function PayrollRunView({ employees, showToast }: PayrollRunViewProps) {
   return (
     <div>
       <PageHeader
-        breadcrumb={["급여 & 보상 정산", "급여 운영 엔진", "월간 급여 정산 프로세스"]}
-        title="월간 급여 정산 프로세스"
+        breadcrumb={["급여 & 보상 정산", "급여 운영", "월간 급여 정산"]}
+        title="월간 급여 정산"
         subtitle="고정급 · 변동 수당 · 시간외 수당을 자동 산정하고 4대보험 요율을 실시간 연동합니다 — 2026년 6월 귀속분 정산."
         actions={
           <Button variant="cobalt" icon={<Play size={15} />} onClick={runNext}>
@@ -219,7 +219,7 @@ export function PayrollRunView({ employees, showToast }: PayrollRunViewProps) {
           </div>
           <p className="border-t border-hairline-soft px-7 py-4 text-xs text-ink-400">
             이상치 자동 검증 단계에서 전월 대비 ±30% 이상 변동된 지급 건은 검토
-            큐로 분리됩니다.
+            대기함으로 분리됩니다.
           </p>
         </Card>
       </div>

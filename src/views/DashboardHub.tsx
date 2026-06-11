@@ -94,7 +94,7 @@ export function DashboardHub({
   return (
     <div>
       <header className="mb-8">
-        <p className="type-label mb-2">2026년 6월 10일 수요일 · 피플 인텔리전스 브리핑</p>
+        <p className="type-label mb-2">2026년 6월 10일 수요일 · 인사 현황 브리핑</p>
         <h1 className="type-display text-[42px]">
           좋은 아침이에요, {currentUser.name} 님
         </h1>
@@ -114,8 +114,9 @@ export function DashboardHub({
         />
 
         <Card
-          title="애자일 OKR & 피어 피드백"
-          subtitle="분기 핵심 결과와 엔지니어 협업 칭찬 스트림"
+          title="OKR & 동료 피드백"
+          help="OKR(Objectives & Key Results)은 도전적인 목표(O)와 달성도를 측정하는 핵심 결과(KR)로 구성된 목표 관리 기법입니다."
+          subtitle="분기 핵심 결과와 동료 협업 칭찬 모음"
           action={
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-canvas text-ink-500">
               <Target size={16} strokeWidth={1.75} />
@@ -146,7 +147,7 @@ export function DashboardHub({
           <div className="mt-6 border-t border-hairline-soft pt-5">
             <div className="type-label mb-3 flex items-center gap-1.5">
               <Heart size={12} className="text-mint-deep" />
-              피어 피드백 스트림
+              동료 피드백 모아보기
             </div>
             <ul className="nx-scroll flex max-h-[290px] flex-col gap-4 overflow-y-auto pr-1">
               {PEER_FEEDBACK.map((item) => {
@@ -189,7 +190,7 @@ export function DashboardHub({
         </Card>
 
         <Card
-          title="엔터프라이즈 결재 대기 큐"
+          title="전사 결재 대기함"
           subtitle={`승인 대기 ${approvals.length}건 · 긴급 ${approvals.filter((a) => a.urgent).length}건`}
           action={
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-canvas text-ink-500">
@@ -270,7 +271,7 @@ export function DashboardHub({
       {/* 에디토리얼 내러티브 분석 모듈 */}
       <Card padding="roomy" className="mt-6">
         <div className="max-w-3xl">
-          <span className="type-label">Narrative HR Analytics</span>
+          <span className="type-label">서술형 인사 분석</span>
           <h2 className="type-subhead mt-3 text-ink">
             넥스칩 세미콘의 현재 조직 건강도 점수는{" "}
             <strong className="font-semibold">
@@ -280,23 +281,29 @@ export function DashboardHub({
             <strong className="font-semibold">
               {RND_RETENTION_DELTA}% 상승
             </strong>
-            했습니다. 핵심 인재풀의 평균 컴파라티오는{" "}
-            {fmtCompa(avgCompa)}로 시장 미드포인트에 안정적으로 정렬되어
-            있고, 메리트 예산은 현재 {usagePct}% 수준에서 운용 중입니다.
+            했습니다. 핵심 인재군의 평균 컴파라티오는{" "}
+            {fmtCompa(avgCompa)}로 시장 중위 수준에 안정적으로 맞춰져
+            있고, 인상 예산은 현재 {usagePct}% 수준에서 운용 중입니다.
           </h2>
         </div>
 
         <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-6">
-          <StatCard square label="조직 건강도" value={String(ORG_HEALTH_SCORE)} detail="전사 펄스 서베이" accent="mint" />
+          <StatCard square label="조직 건강도" value={String(ORG_HEALTH_SCORE)} detail="전사 상시 설문 기준" accent="mint" />
           <StatCard square label="유지율" value={`${ORG_RETENTION_RATE}%`} detail={`전월 +${RND_RETENTION_DELTA}%p`} />
-          <StatCard square label="평균 컴파라티오" value={fmtCompa(avgCompa)} detail="밴드 0.70 – 1.30" />
+          <StatCard
+            square
+            label="평균 컴파라티오"
+            help="컴파라티오(Compa-Ratio)는 시장 중위 연봉 대비 개인 연봉의 비율입니다. 1.00이면 시장 중간 수준, 1.00보다 크면 시장보다 높은 보상을 뜻합니다."
+            value={fmtCompa(avgCompa)}
+            detail="밴드 0.70 – 1.30"
+          />
           <StatCard square label="OKR 평균 달성" value={`${Math.round(avgOkr)}%`} detail="직전 사이클 기준" />
           <StatCard square label="핵심 인재" value={`${starCount}명`} detail={gradeCounts} />
           <StatCard
             square
             label="예산 소진율"
             value={`${usagePct}%`}
-            detail={overBudget ? "한도 초과" : `${fmtEok(BUDGET_POOL)} 풀 기준`}
+            detail={overBudget ? "한도 초과" : `총 예산 ${fmtEok(BUDGET_POOL)} 기준`}
             accent={overBudget ? "alert" : "none"}
           />
         </div>
@@ -361,7 +368,7 @@ function TimeAttendanceCard({
 
   return (
     <Card
-      title="타임 & 어텐던스"
+      title="근태 현황"
       subtitle={`${shift.label} · ${shift.line} · ${shift.window}`}
       action={
         <span className="flex h-9 w-9 items-center justify-center rounded-full bg-canvas text-ink-500">
@@ -380,7 +387,7 @@ function TimeAttendanceCard({
           />
           {punchedInAt
             ? `근무 중 · 오늘 ${fmtHours(todayMinutes / 60)}`
-            : "펀치 대기 · 출근 전"}
+            : "출근 전 · 기록 대기"}
         </div>
         <Button
           variant={punchedInAt ? "secondary" : "primary"}
@@ -389,7 +396,7 @@ function TimeAttendanceCard({
           icon={<Clock3 size={16} />}
           onClick={onPunch}
         >
-          {punchedInAt ? "퇴근 펀치" : "출근 펀치"}
+          {punchedInAt ? "퇴근하기" : "출근하기"}
         </Button>
       </div>
 
