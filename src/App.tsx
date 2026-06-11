@@ -215,7 +215,9 @@ const AUTH_STORAGE_KEY = "nx-hr-authed";
 
 export default function App() {
   const [authed, setAuthed] = useState(
-    () => sessionStorage.getItem(AUTH_STORAGE_KEY) === "1"
+    () =>
+      localStorage.getItem(AUTH_STORAGE_KEY) === "1" ||
+      sessionStorage.getItem(AUTH_STORAGE_KEY) === "1"
   );
   const [route, setRoute] = useState<RouteId>("hub");
   const [employees, setEmployees] = useState<Employee[]>(INITIAL_EMPLOYEES);
@@ -250,12 +252,19 @@ export default function App() {
     setToast({ id: Date.now(), message });
   }, []);
 
-  const login = useCallback(() => {
-    sessionStorage.setItem(AUTH_STORAGE_KEY, "1");
+  /* 자동 로그인 체크 시 localStorage(브라우저를 닫아도 유지),
+     해제 시 sessionStorage(탭을 닫으면 만료) */
+  const login = useCallback((keepSignedIn: boolean) => {
+    if (keepSignedIn) {
+      localStorage.setItem(AUTH_STORAGE_KEY, "1");
+    } else {
+      sessionStorage.setItem(AUTH_STORAGE_KEY, "1");
+    }
     setAuthed(true);
   }, []);
 
   const logout = useCallback(() => {
+    localStorage.removeItem(AUTH_STORAGE_KEY);
     sessionStorage.removeItem(AUTH_STORAGE_KEY);
     setAuthed(false);
     setRoute("hub");
